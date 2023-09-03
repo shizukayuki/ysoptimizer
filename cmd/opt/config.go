@@ -45,6 +45,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			switch t.Weapon.Key {
 			case good.PrototypeCrescent:
 				// s.Add(good.ATKP, .36)
+			case good.AquaSimulacra:
+				s.Add(good.HPP, .16)
+				// s.AllDMG += .20
 			}
 			// A1: Undivided Heart
 			// s.Add(good.CR, .20)
