@@ -267,6 +267,11 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 		s.Add(good.HydroP, .15)
 	case good.VourukashasGlow:
 		s.Add(good.HPP, .20)
+	case good.MarechausseeHunter:
+		s.NormalDMG += .15
+		s.ChargedDMG += .15
+	case good.GoldenTroupe:
+		s.SkillDMG += .20
 	}
 }
 
@@ -278,6 +283,8 @@ func (s *OptimizeState) add4SetBonus(set good.ArtifactSetKey) {
 			v = .75
 		}
 		s.BurstDMG += v
+	case good.GoldenTroupe:
+		s.SkillDMG += .25
 	}
 }
 

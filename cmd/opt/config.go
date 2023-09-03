@@ -883,6 +883,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			em := s.Get(good.EM)
 			agg := 1446.9 * (1 + (5*em)/(1200+em)) * 1.15
 
+			switch s.SetBonus {
+			case good.GoldenTroupe:
+				s.SkillDMG += .25
+			}
+
 			// Oz's ATK DMG
 			dmg := s.TotalATK() * 1.776
 			dmg = dmg*2 + (dmg + agg)

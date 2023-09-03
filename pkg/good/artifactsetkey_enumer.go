@@ -19,8 +19,8 @@ const (
 	_ArtifactSetKeyLowerName_3 = "gladiatorsfinaleviridescentvenererwandererstroupe"
 	_ArtifactSetKeyName_4      = "ThunderingFuryCrimsonWitchOfFlamesNoblesseObligeBloodstainedChivalryPrayersForIlluminationPrayersForDestinyPrayersForWisdom"
 	_ArtifactSetKeyLowerName_4 = "thunderingfurycrimsonwitchofflamesnoblesseobligebloodstainedchivalryprayersforilluminationprayersfordestinyprayersforwisdom"
-	_ArtifactSetKeyName_5      = "PrayersToSpringtimeArchaicPetraRetracingBolideHeartOfDepthTenacityOfTheMillelithPaleFlameShimenawasReminiscenceEmblemOfSeveredFateHuskOfOpulentDreamsOceanHuedClamVermillionHereafterEchoesOfAnOfferingDeepwoodMemoriesGildedDreamsDesertPavilionChronicleFlowerOfParadiseLostNymphsDreamVourukashasGlow"
-	_ArtifactSetKeyLowerName_5 = "prayerstospringtimearchaicpetraretracingbolideheartofdepthtenacityofthemillelithpaleflameshimenawasreminiscenceemblemofseveredfatehuskofopulentdreamsoceanhuedclamvermillionhereafterechoesofanofferingdeepwoodmemoriesgildeddreamsdesertpavilionchronicleflowerofparadiselostnymphsdreamvourukashasglow"
+	_ArtifactSetKeyName_5      = "PrayersToSpringtimeArchaicPetraRetracingBolideHeartOfDepthTenacityOfTheMillelithPaleFlameShimenawasReminiscenceEmblemOfSeveredFateHuskOfOpulentDreamsOceanHuedClamVermillionHereafterEchoesOfAnOfferingDeepwoodMemoriesGildedDreamsDesertPavilionChronicleFlowerOfParadiseLostNymphsDreamVourukashasGlowMarechausseeHunterGoldenTroupe"
+	_ArtifactSetKeyLowerName_5 = "prayerstospringtimearchaicpetraretracingbolideheartofdepthtenacityofthemillelithpaleflameshimenawasreminiscenceemblemofseveredfatehuskofopulentdreamsoceanhuedclamvermillionhereafterechoesofanofferingdeepwoodmemoriesgildeddreamsdesertpavilionchronicleflowerofparadiselostnymphsdreamvourukashasglowmarechausseehuntergoldentroupe"
 )
 
 var (
@@ -29,7 +29,7 @@ var (
 	_ArtifactSetKeyIndex_2 = [...]uint8{0, 15, 29, 39, 52}
 	_ArtifactSetKeyIndex_3 = [...]uint8{0, 16, 34, 49}
 	_ArtifactSetKeyIndex_4 = [...]uint8{0, 14, 34, 48, 68, 90, 107, 123}
-	_ArtifactSetKeyIndex_5 = [...]uint16{0, 19, 31, 46, 58, 80, 89, 111, 130, 149, 162, 181, 199, 215, 227, 250, 270, 281, 296}
+	_ArtifactSetKeyIndex_5 = [...]uint16{0, 19, 31, 46, 58, 80, 89, 111, 130, 149, 162, 181, 199, 215, 227, 250, 270, 281, 296, 314, 326}
 )
 
 func (i ArtifactSetKey) String() string {
@@ -48,7 +48,7 @@ func (i ArtifactSetKey) String() string {
 	case 15005 <= i && i <= 15011:
 		i -= 15005
 		return _ArtifactSetKeyName_4[_ArtifactSetKeyIndex_4[i]:_ArtifactSetKeyIndex_4[i+1]]
-	case 15013 <= i && i <= 15030:
+	case 15013 <= i && i <= 15032:
 		i -= 15013
 		return _ArtifactSetKeyName_5[_ArtifactSetKeyIndex_5[i]:_ArtifactSetKeyIndex_5[i+1]]
 	default:
@@ -106,9 +106,11 @@ func _ArtifactSetKeyNoOp() {
 	_ = x[FlowerOfParadiseLost-(15028)]
 	_ = x[NymphsDream-(15029)]
 	_ = x[VourukashasGlow-(15030)]
+	_ = x[MarechausseeHunter-(15031)]
+	_ = x[GoldenTroupe-(15032)]
 }
 
-var _ArtifactSetKeyValues = []ArtifactSetKey{UnknownArtifactSetKey, ResolutionOfSojourner, BraveHeart, DefendersWill, TinyMiracle, Berserker, MartialArtist, Instructor, Gambler, TheExile, Adventurer, LuckyDog, Scholar, TravelingDoctor, BlizzardStrayer, Thundersoother, Lavawalker, MaidenBeloved, GladiatorsFinale, ViridescentVenerer, WanderersTroupe, ThunderingFury, CrimsonWitchOfFlames, NoblesseOblige, BloodstainedChivalry, PrayersForIllumination, PrayersForDestiny, PrayersForWisdom, PrayersToSpringtime, ArchaicPetra, RetracingBolide, HeartOfDepth, TenacityOfTheMillelith, PaleFlame, ShimenawasReminiscence, EmblemOfSeveredFate, HuskOfOpulentDreams, OceanHuedClam, VermillionHereafter, EchoesOfAnOffering, DeepwoodMemories, GildedDreams, DesertPavilionChronicle, FlowerOfParadiseLost, NymphsDream, VourukashasGlow}
+var _ArtifactSetKeyValues = []ArtifactSetKey{UnknownArtifactSetKey, ResolutionOfSojourner, BraveHeart, DefendersWill, TinyMiracle, Berserker, MartialArtist, Instructor, Gambler, TheExile, Adventurer, LuckyDog, Scholar, TravelingDoctor, BlizzardStrayer, Thundersoother, Lavawalker, MaidenBeloved, GladiatorsFinale, ViridescentVenerer, WanderersTroupe, ThunderingFury, CrimsonWitchOfFlames, NoblesseOblige, BloodstainedChivalry, PrayersForIllumination, PrayersForDestiny, PrayersForWisdom, PrayersToSpringtime, ArchaicPetra, RetracingBolide, HeartOfDepth, TenacityOfTheMillelith, PaleFlame, ShimenawasReminiscence, EmblemOfSeveredFate, HuskOfOpulentDreams, OceanHuedClam, VermillionHereafter, EchoesOfAnOffering, DeepwoodMemories, GildedDreams, DesertPavilionChronicle, FlowerOfParadiseLost, NymphsDream, VourukashasGlow, MarechausseeHunter, GoldenTroupe}
 
 var _ArtifactSetKeyNameToValueMap = map[string]ArtifactSetKey{
 	_ArtifactSetKeyName_0[0:0]:          UnknownArtifactSetKey,
@@ -203,6 +205,10 @@ var _ArtifactSetKeyNameToValueMap = map[string]ArtifactSetKey{
 	_ArtifactSetKeyLowerName_5[270:281]: NymphsDream,
 	_ArtifactSetKeyName_5[281:296]:      VourukashasGlow,
 	_ArtifactSetKeyLowerName_5[281:296]: VourukashasGlow,
+	_ArtifactSetKeyName_5[296:314]:      MarechausseeHunter,
+	_ArtifactSetKeyLowerName_5[296:314]: MarechausseeHunter,
+	_ArtifactSetKeyName_5[314:326]:      GoldenTroupe,
+	_ArtifactSetKeyLowerName_5[314:326]: GoldenTroupe,
 }
 
 var _ArtifactSetKeyNames = []string{
@@ -252,6 +258,8 @@ var _ArtifactSetKeyNames = []string{
 	_ArtifactSetKeyName_5[250:270],
 	_ArtifactSetKeyName_5[270:281],
 	_ArtifactSetKeyName_5[281:296],
+	_ArtifactSetKeyName_5[296:314],
+	_ArtifactSetKeyName_5[314:326],
 }
 
 // ArtifactSetKeyString retrieves an enum value from the enum constants string name.
