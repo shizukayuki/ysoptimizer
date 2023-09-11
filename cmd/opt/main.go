@@ -119,11 +119,41 @@ func ParseGODatebase(filename string) *good.Datebase {
 	data, err := os.ReadFile(filename)
 	check(err)
 
+	data, err = handleTraveler(data)
+	check(err)
+
 	var db good.Datebase
 	err = json.Unmarshal(data, &db)
 	check(err)
 
 	return &db
+}
+
+func handleTraveler(data []byte) ([]byte, error) {
+	var obj map[string]json.RawMessage
+	if err := json.Unmarshal(data, &obj); err != nil {
+		return nil, err
+	}
+
+	var chars []map[string]json.RawMessage
+	if err := json.Unmarshal(obj["characters"], &chars); err != nil {
+		return nil, err
+	}
+
+	for _, c := range chars {
+		if !strings.HasPrefix(string(c["key"]), "\"Traveler") {
+			continue
+		}
+		c["key"] = json.RawMessage("\"Traveler\"")
+	}
+
+	var err error
+	obj["characters"], err = json.Marshal(chars)
+	if err != nil {
+		return nil, err
+	}
+
+	return json.Marshal(obj)
 }
 
 func check(err error) {
