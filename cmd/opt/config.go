@@ -21,8 +21,8 @@ var priority = []good.CharacterKey{
 	good.Xiangling,
 	good.Beidou,
 
-	good.KukiShinobu,
 	good.Sucrose,
+	good.KukiShinobu,
 	good.Nilou,
 	good.SangonomiyaKokomi,
 
@@ -401,7 +401,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			}
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			if s.Get(good.ER) < 1.30 {
+			if s.Get(good.ER) < 1.40 {
 				return 0
 			}
 
@@ -497,6 +497,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			}
 
 			switch s.SetBonus {
+			case good.NoblesseOblige:
+				s.Add(good.ATKP, .20)
+				noelle.Add(good.ATKP, .20)
 			case good.HuskOfOpulentDreams:
 				s.Add(good.GeoP, .06*4)
 				s.Add(good.DEFP, .06*4)
@@ -547,7 +550,8 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			// A4: Spirit Communion Seal
 			ayaka.BurstDMG += .10
 
-			if s.SetBonus == good.NoblesseOblige {
+			switch s.SetBonus {
+			case good.NoblesseOblige:
 				s.Add(good.ATKP, .20)
 				ayaka.Add(good.ATKP, .20)
 			}
