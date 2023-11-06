@@ -128,6 +128,10 @@ const (
 	Lynette             CharacterKey = 10000083
 	Lyney               CharacterKey = 10000084
 	Freminet            CharacterKey = 10000085
+	Wriothesley         CharacterKey = 10000086
+	Neuvillette         CharacterKey = 10000087
+	Charlotte           CharacterKey = 10000088
+	Furina              CharacterKey = 10000089
 )
 
 type WeaponKey uint32
@@ -162,6 +166,8 @@ const (
 	WolfFang                      WeaponKey = 11424
 	FinaleOfTheDeep               WeaponKey = 11425
 	FleuveCendreFerryman          WeaponKey = 11426
+	TheDockhandsAssistant         WeaponKey = 11427
+	SwordOfNarzissenkreuz         WeaponKey = 11428
 	AquilaFavonia                 WeaponKey = 11501
 	SkywardBlade                  WeaponKey = 11502
 	FreedomSworn                  WeaponKey = 11503
@@ -171,6 +177,7 @@ const (
 	HaranGeppakuFutsu             WeaponKey = 11510
 	KeyOfKhajNisut                WeaponKey = 11511
 	LightOfFoliarIncision         WeaponKey = 11512
+	SplendorOfTranquilWaters      WeaponKey = 11513
 	WasterGreatsword              WeaponKey = 12101
 	OldMercsPal                   WeaponKey = 12201
 	FerrousShadow                 WeaponKey = 12301
@@ -197,6 +204,7 @@ const (
 	MailedFlower                  WeaponKey = 12418
 	TalkingStick                  WeaponKey = 12424
 	TidalShadow                   WeaponKey = 12425
+	PortablePowerSaw              WeaponKey = 12427
 	SkywardPride                  WeaponKey = 12501
 	WolfsGravestone               WeaponKey = 12502
 	SongOfBrokenPines             WeaponKey = 12503
@@ -224,6 +232,7 @@ const (
 	MissiveWindspear              WeaponKey = 13419
 	BalladOfTheFjords             WeaponKey = 13424
 	RightfulReward                WeaponKey = 13425
+	ProspectorsDrill              WeaponKey = 13427
 	StaffOfHoma                   WeaponKey = 13501
 	SkywardSpine                  WeaponKey = 13502
 	VortexVanquisher              WeaponKey = 13504
@@ -256,6 +265,7 @@ const (
 	FruitOfFulfillment            WeaponKey = 14417
 	SacrificialJade               WeaponKey = 14424
 	FlowingPurity                 WeaponKey = 14425
+	BalladOfTheBoundlessBlue      WeaponKey = 14426
 	SkywardAtlas                  WeaponKey = 14501
 	LostPrayerToTheSacredWinds    WeaponKey = 14502
 	MemoryOfDust                  WeaponKey = 14504
@@ -264,6 +274,8 @@ const (
 	KagurasVerity                 WeaponKey = 14509
 	AThousandFloatingDreams       WeaponKey = 14511
 	TulaytullahsRemembrance       WeaponKey = 14512
+	CashflowSupervision           WeaponKey = 14513
+	TomeOfTheEternalFlow          WeaponKey = 14514
 	HuntersBow                    WeaponKey = 15101
 	SeasonedHuntersBow            WeaponKey = 15201
 	RavenBow                      WeaponKey = 15301
@@ -292,6 +304,7 @@ const (
 	IbisPiercer                   WeaponKey = 15419
 	ScionOfTheBlazingSun          WeaponKey = 15424
 	SongOfStillness               WeaponKey = 15425
+	RangeGauge                    WeaponKey = 15427
 	SkywardHarp                   WeaponKey = 15501
 	AmosBow                       WeaponKey = 15502
 	ElegyForTheEnd                WeaponKey = 15503
