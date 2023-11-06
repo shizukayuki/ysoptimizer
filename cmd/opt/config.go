@@ -40,7 +40,13 @@ var priority = []good.CharacterKey{
 
 var config = map[good.CharacterKey]*OptimizeTarget{
 	good.Ganyu: {
-		Filter: GenericDPSFilter(good.ATKP, good.CryoP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.CryoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).
+			Max(1).SlotMax(2, good.Goblet, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.PrototypeCrescent:
@@ -71,7 +77,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.KamisatoAyaka: {
-		Filter: GenericDPSFilter(good.ATKP, good.CryoP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.CryoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).
+			Max(1).SlotMax(2, good.Goblet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.MistsplitterReforged:
@@ -109,7 +121,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Rosaria: {
-		Filter: GenericDPSFilter(good.ATKP, good.CryoP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.CryoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardSpine:
@@ -152,7 +169,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Keqing: {
-		Filter: GenericDPSFilter(good.ATKP, good.ElectroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.ER).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.MistsplitterReforged:
@@ -174,7 +196,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Yelan: {
-		Filter: GenericDPSFilter(good.HPP, good.HydroP),
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HydroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.ATKP, good.DEFP).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.AquaSimulacra:
@@ -201,28 +228,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Nahida: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				switch a.MainStatKey {
-				case good.ATKP, good.EM:
-					return true
-				}
-			case good.Goblet:
-				switch a.MainStatKey {
-				case good.DendroP, good.EM:
-					return true
-				}
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.CR, good.CD, good.EM:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ATKP, good.EM).
+			Goblet(good.DendroP, good.EM).
+			Circlet(good.CR, good.CD, good.EM).
+			Skip(good.HPP, good.DEFP, good.ER).
+			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.AThousandFloatingDreams:
@@ -267,25 +279,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.RaidenShogun: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				switch a.MainStatKey {
-				case good.ATKP, good.ER:
-					return true
-				}
-			case good.Goblet:
-				return a.MainStatKey == good.ElectroP
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.CR, good.CD:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ATKP, good.ER).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.PrimordialJadeWingedSpear:
@@ -320,7 +319,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.YaeMiko: {
-		Filter: GenericDPSFilter(good.ATKP, good.ElectroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.KagurasVerity:
@@ -354,7 +358,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Noelle: {
-		Filter: GenericDPSFilter(good.DEFP, good.GeoP),
+		Filter: NewFilter().
+			Sands(good.ATKP, good.DEFP).
+			Goblet(good.GeoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.EM).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardPride:
@@ -389,7 +398,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Eula: {
-		Filter: GenericDPSFilter(good.ATKP, good.PhysicalP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.PhysicalP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).
+			Max(1).SlotMax(3, good.Sands, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardPride:
@@ -429,15 +444,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Layla: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet, good.Circlet:
-				return a.MainStatKey == good.HPP
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HPP).
+			Circlet(good.HPP).
+			Skip(good.DEFP).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.PrimordialJadeCutter:
@@ -459,20 +471,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.YunJin: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet:
-				return a.MainStatKey == good.DEFP
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.DEFP, good.CR:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.DEFP).
+			Goblet(good.DEFP).
+			Circlet(good.DEFP, good.CR).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardSpine:
@@ -520,15 +523,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Shenhe: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet, good.Circlet:
-				return a.MainStatKey == good.ATKP
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ATKP).
+			Circlet(good.ATKP).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardSpine:
@@ -568,19 +567,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Mona: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				return a.MainStatKey == good.ER
-			case good.Goblet:
-				return a.MainStatKey == good.HydroP
-			case good.Circlet:
-				return a.MainStatKey == good.CR
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ER).
+			Goblet(good.HydroP).
+			Circlet(good.CR).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 		},
 		IgnoreEnemy: true,
@@ -597,15 +588,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Sucrose: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet, good.Circlet:
-				return a.MainStatKey == good.EM
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.EM).
+			Goblet(good.EM).
+			Circlet(good.EM).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 		},
 		IgnoreEnemy: true,
@@ -621,7 +608,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Jean: {
-		Filter: GenericDPSFilter(good.ATKP, good.AnemoP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.AnemoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.DEFP).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.PrimordialJadeCutter:
@@ -654,15 +646,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.KukiShinobu: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet, good.Circlet:
-				return a.MainStatKey == good.EM
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.EM).
+			Goblet(good.EM).
+			Circlet(good.EM).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 		},
 		IgnoreEnemy: true,
@@ -683,15 +671,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Nilou: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands, good.Goblet, good.Circlet:
-				return a.MainStatKey == good.HPP
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HPP).
+			Circlet(good.HPP).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.PrimordialJadeCutter:
@@ -732,25 +716,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.SangonomiyaKokomi: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				return a.MainStatKey == good.HPP
-			case good.Goblet:
-				switch a.MainStatKey {
-				case good.HydroP, good.HPP:
-					return true
-				}
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.Heal, good.HPP:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HydroP, good.HPP).
+			Circlet(good.Heal, good.HPP).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			// Passive: Flawless Strategy
 			s.Add(good.CR, -1)
@@ -790,7 +760,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.KujouSara: {
-		Filter: GenericDPSFilter(good.ATKP, good.ElectroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).Max(2).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
@@ -814,7 +789,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Beidou: {
-		Filter: GenericDPSFilter(good.ATKP, good.ElectroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardPride:
@@ -838,7 +818,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Yoimiya: {
-		Filter: GenericDPSFilter(good.ATKP, good.PyroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.PyroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.ER).
+			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.Rust:
@@ -875,7 +861,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Fischl: {
-		Filter: GenericDPSFilter(good.ATKP, good.ElectroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.ER).
+			Max(2).SlotMax(3, good.Sands, good.Goblet, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.Rust:
@@ -905,25 +897,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Xiangling: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				switch a.MainStatKey {
-				case good.ATKP, good.ER:
-					return true
-				}
-			case good.Goblet:
-				return a.MainStatKey == good.PyroP
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.CR, good.CD:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ATKP, good.ER).
+			Goblet(good.PyroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).
+			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.TheCatch:
@@ -956,25 +936,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Dehya: {
-		Filter: func(a *good.Artifact) bool {
-			switch a.SlotKey {
-			case good.Flower, good.Plume:
-				return true
-			case good.Sands:
-				switch a.MainStatKey {
-				case good.ATKP, good.HPP:
-					return true
-				}
-			case good.Goblet:
-				return a.MainStatKey == good.PyroP
-			case good.Circlet:
-				switch a.MainStatKey {
-				case good.CR, good.CD:
-					return true
-				}
-			}
-			return false
-		},
+		Filter: NewFilter().
+			Sands(good.ATKP, good.HPP).
+			Goblet(good.PyroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.DEFP).Max(1).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.SkywardPride:
@@ -1003,7 +970,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	},
 
 	good.Collei: {
-		Filter: GenericDPSFilter(good.ATKP, good.DendroP),
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.DendroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
 			case good.TheStringless:
@@ -1035,23 +1007,4 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			return dmg
 		},
 	},
-}
-
-func GenericDPSFilter(sands, goblet good.StatKey) ArtifactFilter {
-	return func(a *good.Artifact) bool {
-		switch a.SlotKey {
-		case good.Flower, good.Plume:
-			return true
-		case good.Sands:
-			return a.MainStatKey == sands
-		case good.Goblet:
-			return a.MainStatKey == goblet
-		case good.Circlet:
-			switch a.MainStatKey {
-			case good.CR, good.CD:
-				return true
-			}
-		}
-		return false
-	}
 }

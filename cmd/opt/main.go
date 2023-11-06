@@ -13,7 +13,10 @@ import (
 	"github.com/shizukayuki/ysoptimizer/pkg/good"
 )
 
-var optimized = map[good.CharacterKey]OptimizeState{}
+var (
+	optimized = map[good.CharacterKey]OptimizeState{}
+	slow      = flag.Bool("slow", false, "Run in slow mode. Don't filter artifacts that have dead stats")
+)
 
 func main() {
 	flag.Parse()
