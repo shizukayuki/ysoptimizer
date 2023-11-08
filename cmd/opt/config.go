@@ -11,6 +11,7 @@ var priority = []good.CharacterKey{
 	good.Yelan,
 	good.Nahida,
 	good.Noelle,
+	good.Furina,
 	good.RaidenShogun,
 	good.YaeMiko,
 	good.Ganyu,
@@ -223,6 +224,46 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(0, 0)
 			// Exquisite Throw DMG
 			dmg *= .088
+			return dmg
+		},
+	},
+
+	good.Furina: {
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HydroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.ATKP, good.DEFP).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
+			switch t.Weapon.Key {
+			case good.PrimordialJadeCutter:
+				s.Add(good.HPP, .20)
+			case good.KeyOfKhajNisut:
+				s.Add(good.HPP, .20)
+			case good.FesteringDesire:
+				s.SkillCR += .12
+				s.SkillDMG += .32
+			}
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			switch s.SetBonus {
+			case good.GoldenTroupe:
+				s.SkillDMG += .25
+			}
+
+			hp := s.TotalHP()
+			a4 := hp * .001 * .007
+			if a4 > .28 {
+				a4 = .28
+			}
+
+			dmg := hp
+			dmg *= 1 + s.AllDMG + s.SkillDMG + a4 + s.Get(good.HydroP)
+			dmg *= s.CritAverage(s.SkillCR, 0)
+			// Gentilhomme Usher DMG
+			dmg *= .1013
 			return dmg
 		},
 	},
