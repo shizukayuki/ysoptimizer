@@ -44,9 +44,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Filter: NewFilter().
 			Sands(good.ATKP).
 			Goblet(good.CryoP).
-			Circlet(good.CR, good.CD).
+			Circlet(good.CR, good.CD, good.ATKP).
 			Skip(good.HPP, good.DEFP, good.EM).
-			Max(1).SlotMax(2, good.Goblet, good.Circlet).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -81,9 +81,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Filter: NewFilter().
 			Sands(good.ATKP).
 			Goblet(good.CryoP).
-			Circlet(good.CR, good.CD).
+			Circlet(good.CR, good.CD, good.ATKP).
 			Skip(good.HPP, good.DEFP, good.EM).
-			Max(1).SlotMax(2, good.Goblet).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -231,7 +231,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	good.Furina: {
 		Filter: NewFilter().
 			Sands(good.HPP).
-			Goblet(good.HydroP).
+			Goblet(good.HydroP, good.HPP).
 			Circlet(good.CR, good.CD).
 			Skip(good.ATKP, good.DEFP).
 			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
@@ -248,6 +248,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			}
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			if s.Get(good.ER) < 1.60 {
+				return 0
+			}
+
 			switch s.SetBonus {
 			case good.GoldenTroupe:
 				s.SkillDMG += .25
@@ -274,7 +278,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Goblet(good.DendroP, good.EM).
 			Circlet(good.CR, good.CD, good.EM).
 			Skip(good.HPP, good.DEFP, good.ER).
-			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -322,7 +326,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	good.RaidenShogun: {
 		Filter: NewFilter().
 			Sands(good.ATKP, good.ER).
-			Goblet(good.ElectroP).
+			Goblet(good.ElectroP, good.ATKP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.DEFP, good.EM).Max(1).
 			Build(),
@@ -401,7 +405,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	good.Noelle: {
 		Filter: NewFilter().
 			Sands(good.ATKP, good.DEFP).
-			Goblet(good.GeoP).
+			Goblet(good.GeoP, good.DEFP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.EM).Max(1).
 			Build(),
@@ -444,7 +448,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Goblet(good.PhysicalP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.DEFP, good.EM).
-			Max(1).SlotMax(3, good.Sands, good.Circlet).
+			Max(1).SlotMax(3, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -525,6 +529,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			if s.Get(good.ER) < 1.60 {
+				return 0
+			}
+			if s.Get(good.CR) < .70 {
 				return 0
 			}
 
@@ -802,7 +809,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 
 	good.KujouSara: {
 		Filter: NewFilter().
-			Sands(good.ATKP).
+			Sands(good.ATKP, good.ER).
 			Goblet(good.ElectroP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.DEFP, good.EM).Max(2).
@@ -864,7 +871,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Goblet(good.PyroP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.DEFP, good.ER).
-			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -943,7 +950,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Goblet(good.PyroP).
 			Circlet(good.CR, good.CD).
 			Skip(good.HPP, good.DEFP).
-			Max(1).SlotMax(2, good.Sands, good.Circlet).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
