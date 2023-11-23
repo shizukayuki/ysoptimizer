@@ -305,12 +305,8 @@ func (s OptimizeState) String() string {
 
 	fmt.Fprintf(&sb, "[ Energy Recharge: %.1f%% ]\n", s.Get(good.ER)*100)
 
-	for _, stat := range good.FightPropToGOOD {
-		v := s.Get(stat)
-		if !strings.HasSuffix(stat.String(), "_dmg_") || v == 0 {
-			continue
-		}
-		fmt.Fprintf(&sb, "[ %s: %.1f%% ]\n", good.GOODToString[stat], v*100)
+	if v := s.Build[good.Goblet].MainStatKey; strings.HasSuffix(v.String(), "_dmg_") {
+		fmt.Fprintf(&sb, "[ %s: %.1f%% ]\n", good.GOODToString[v], s.Get(v)*100)
 	}
 
 	var cv float32
