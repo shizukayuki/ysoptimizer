@@ -815,6 +815,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.HPP, good.DEFP, good.EM).Max(2).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
+			switch t.Weapon.Key {
+			case good.AlleyHunter:
+				s.AllDMG += .30
+			}
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			if s.SetBonus != good.NoblesseOblige {
