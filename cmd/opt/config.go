@@ -201,7 +201,8 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Sands(good.HPP).
 			Goblet(good.HydroP).
 			Circlet(good.CR, good.CD).
-			Skip(good.ATKP, good.DEFP).Max(1).
+			Skip(good.ATKP, good.DEFP).
+			Max(1).SlotMax(2, good.Sands).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -215,7 +216,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			s.AllDMG += .01 + .035*4
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			if s.Get(good.ER) < 1.30 {
+			if s.Get(good.ER) < 1.40 {
 				return 0
 			}
 
@@ -234,7 +235,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Goblet(good.HydroP, good.HPP).
 			Circlet(good.CR, good.CD).
 			Skip(good.ATKP, good.DEFP).
-			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
+			Max(1).SlotMax(2, good.Sands, good.Circlet).SlotMax(3, good.Goblet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) {
 			switch t.Weapon.Key {
@@ -418,7 +419,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			}
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			if s.Get(good.ER) < 1.40 {
+			if s.Get(good.ER) < 1.60 {
 				return 0
 			}
 
