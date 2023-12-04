@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
+	"sync"
 
 	"github.com/shizukayuki/ysoptimizer/pkg/excel"
 	"github.com/shizukayuki/ysoptimizer/pkg/good"
@@ -52,12 +54,50 @@ func (t *OptimizeTarget) Optimize() OptimizeState {
 }
 
 func (t *OptimizeTarget) permute(state OptimizeState) OptimizeState {
-	var result, cpy OptimizeState
+	var wg sync.WaitGroup
+	queue := make(chan OptimizeState)
+	results := make([]OptimizeState, runtime.NumCPU())
+	slot := good.SlotKey(0)
 
-	var permuteSlot func(OptimizeState, good.SlotKey)
-	permuteSlot = func(state OptimizeState, slot good.SlotKey) {
+	for i := range results {
+		result := &results[i]
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for cpy := range queue {
+				cpy = t.permuteSlot(cpy, slot+1)
+				if cpy.Result > result.Result {
+					*result = cpy
+				}
+			}
+		}()
+	}
+
+	t.iter(slot, func(a *good.Artifact) {
+		cpy := state
+		cpy.Build[slot] = a
+		cpy.Merge(&a.Stats)
+		queue <- cpy
+	})
+
+	close(queue)
+	wg.Wait()
+
+	var result OptimizeState
+	for _, cpy := range results {
+		if cpy.Result > result.Result {
+			result = cpy
+		}
+	}
+	return result
+}
+
+func (t *OptimizeTarget) permuteSlot(state OptimizeState, slot good.SlotKey) OptimizeState {
+	var result, cpy OptimizeState
+	var inner func(OptimizeState, good.SlotKey)
+
+	inner = func(state OptimizeState, slot good.SlotKey) {
 		if slot >= good.SlotKey(len(state.Build)) {
-			cpy = state
 			cpy.Result = t.Target(t, &cpy)
 			if cpy.Result > result.Result {
 				result = cpy
@@ -65,14 +105,7 @@ func (t *OptimizeTarget) permute(state OptimizeState) OptimizeState {
 			return
 		}
 
-		for _, a := range t.Datebase.Artifacts {
-			if a.SlotKey != slot || a.Level != 20 || a.Location != good.UnknownCharacterKey {
-				continue
-			}
-			if !t.Filter(a) {
-				continue
-			}
-
+		t.iter(slot, func(a *good.Artifact) {
 			cpy = state
 			cpy.Build[slot] = a
 			cpy.Merge(&a.Stats)
@@ -86,12 +119,23 @@ func (t *OptimizeTarget) permute(state OptimizeState) OptimizeState {
 			}
 			cpy.AddSetBonus(a.SetKey, num)
 
-			permuteSlot(cpy, slot+1)
-		}
+			inner(cpy, slot+1)
+		})
 	}
-	permuteSlot(state, 0)
+	inner(state, slot)
 
 	return result
+}
+
+func (t *OptimizeTarget) iter(slot good.SlotKey, fn func(a *good.Artifact)) {
+	for _, a := range t.Datebase.Artifacts {
+		if a.SlotKey != slot || a.Level != 20 || a.Location != good.UnknownCharacterKey {
+			continue
+		}
+		if t.Filter(a) {
+			fn(a)
+		}
+	}
 }
 
 type ExtraStats struct {
