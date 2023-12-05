@@ -1,10 +1,6 @@
 package main
 
-import (
-	"math"
-
-	"github.com/shizukayuki/ysoptimizer/pkg/good"
-)
+import "github.com/shizukayuki/ysoptimizer/pkg/good"
 
 var priority = []good.CharacterKey{
 	good.Keqing,
@@ -49,12 +45,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.PrototypeCrescent:
-				// s.Add(good.ATKP, .36)
-			case good.AquaSimulacra:
-				s.Add(good.HPP, .16)
-				// s.AllDMG += .20
+			switch s.SetBonus {
+			case good.BlizzardStrayer:
+				s.Add(good.CR, .20)
+				s.Add(good.CR, .20)
 			}
 			// A1: Undivided Heart
 			// s.Add(good.CR, .20)
@@ -63,12 +57,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			return true
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch s.SetBonus {
-			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
-			}
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.Get(good.CryoP)
 			dmg *= s.CritAverage(0, 0)
@@ -89,27 +77,18 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
 			case good.MistsplitterReforged:
-				s.Add(good.CryoP, .12)
 				s.Add(good.CryoP, .28)
-			case good.PrimordialJadeCutter:
-				s.Add(good.HPP, .20)
+			}
+			switch s.SetBonus {
+			case good.BlizzardStrayer:
+				s.Add(good.CR, .20)
+				s.Add(good.CR, .20)
 			}
 			// Elemental Resonance: Shattering Ice
 			s.Add(good.CR, .15)
 			return s.Get(good.ER) >= 1.40
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.ATK, s.TotalHP()*.012)
-			}
-
-			switch s.SetBonus {
-			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
-			}
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.CryoP)
 			dmg *= s.CritAverage(0, 0)
@@ -127,15 +106,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.HPP, good.DEFP).Max(2).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardSpine:
-				s.Add(good.CR, .08)
-			case good.WavebreakersFin:
-				v := (60 + 80 + 70*2) * .0012
-				s.BurstDMG += float32(math.Min(v, .40))
-			case good.TheCatch:
-				s.BurstDMG += .32
-				s.BurstCR += .12
+			switch s.SetBonus {
+			case good.BlizzardStrayer:
+				s.Add(good.CR, .20)
+				s.Add(good.CR, .20)
 			}
 			// A1: Regina Probationum
 			s.Add(good.CR, .12)
@@ -144,17 +118,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			return s.Get(good.ER) >= 1.50
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch t.Weapon.Key {
-			case good.StaffOfTheScarletSands:
-				s.Add(good.ATK, s.Get(good.EM)*(.52+.28*3))
-			}
-
-			switch s.SetBonus {
-			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
-			}
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.CryoP)
 			dmg *= s.CritAverage(s.BurstCR, 0)
@@ -174,7 +137,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
 			case good.MistsplitterReforged:
-				s.Add(good.ElectroP, .12)
 				s.Add(good.ElectroP, .28)
 			}
 			// A4: Aristocratic Dignity
@@ -203,7 +165,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
 			case good.AquaSimulacra:
-				s.Add(good.HPP, .16)
 				s.AllDMG += .20
 			}
 			// A1: Turn Control
@@ -231,28 +192,15 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(1).SlotMax(2, good.Sands, good.Circlet).SlotMax(3, good.Goblet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.HPP, .20)
-			case good.KeyOfKhajNisut:
-				s.Add(good.HPP, .20)
-			case good.FesteringDesire:
-				s.SkillCR += .12
-				s.SkillDMG += .32
-			}
-			return s.Get(good.ER) >= 1.60
-		},
-		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			switch s.SetBonus {
 			case good.GoldenTroupe:
 				s.SkillDMG += .25
 			}
-
+			return s.Get(good.ER) >= 1.60
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			hp := s.TotalHP()
-			a4 := hp * .001 * .007
-			if a4 > .28 {
-				a4 = .28
-			}
+			a4 := min(hp*.001*.007, .28)
 
 			dmg := hp
 			dmg *= 1 + s.AllDMG + s.SkillDMG + a4 + s.Get(good.HydroP)
@@ -277,29 +225,21 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 				s.Add(good.DendroP, .10*3)
 				// s.Add(good.EM, 32*3)
 			}
-			return true
-		},
-		IgnoreEnemy: true,
-		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			switch s.SetBonus {
 			case good.GildedDreams:
 				s.Add(good.EM, 50*3)
 			}
-
+			// A4: Awakening Elucidated
+			if em := s.Get(good.EM); em > 200 {
+				s.SkillDMG += min((em-200)*.001, .80)
+				s.SkillCR += min((em-200)*.0003, .24)
+			}
+			return true
+		},
+		IgnoreEnemy: true,
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			em := s.Get(good.EM)
 			spread := 1446.9 * (1 + (5*em)/(1200+em)) * 1.25
-			if em > 200 {
-				dmg := (em - 200) * .001
-				if dmg > .80 {
-					dmg = .80
-				}
-				crit := (em - 200) * .0003
-				if crit > .24 {
-					crit = .24
-				}
-				s.SkillDMG += dmg
-				s.SkillCR += crit
-			}
 
 			dmg := s.TotalATK()*1.858 + em*3.715 + spread
 			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.DendroP)
@@ -324,25 +264,16 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
-			case good.PrimordialJadeWingedSpear:
-				s.Add(good.ATKP, .032*2)
-			case good.TheCatch:
-				s.BurstDMG += .32
-				s.BurstCR += .12
+			case good.StaffOfTheScarletSands:
+				s.Add(good.ATK, s.Get(good.EM)*3*.28)
 			}
 			// Skill: Eye of Stormy Judgment
 			s.BurstDMG += .0030 * 90
+			// A4: Enlightened One
+			s.Add(good.ElectroP, (s.Get(good.ER)-1)*.4)
 			return s.Get(good.ER) >= 2.00
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch t.Weapon.Key {
-			case good.StaffOfTheScarletSands:
-				s.Add(good.ATK, s.Get(good.EM)*(.52+.28*3))
-			}
-
-			// A4: Enlightened One
-			s.Add(good.ElectroP, (s.Get(good.ER)-1)*.4)
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.ElectroP)
 			dmg *= s.CritAverage(s.BurstCR, 0)
@@ -396,15 +327,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.HPP, good.EM).Max(1).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardPride:
-				s.AllDMG += .08
-			case good.SerpentSpine:
-				s.AllDMG += .10 * 5
-			}
-			return s.Get(good.ER) >= 1.60
-		},
-		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			switch s.SetBonus {
 			case good.GladiatorsFinale:
 				s.NormalDMG += .35
@@ -412,7 +334,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 				s.Add(good.GeoP, .06*4)
 				s.Add(good.DEFP, .06*4)
 			}
-
+			return s.Get(good.ER) >= 1.60
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			// Burst: ATK Bonus + C6
 			bonusATK := s.TotalDEF() * (.85 + .50)
 
@@ -434,17 +358,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(1).SlotMax(3, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardPride:
-				s.AllDMG += .08
-			case good.SerpentSpine:
-				s.AllDMG += .10 * 5
-			case good.BeaconOfTheReedSea:
-				s.Add(good.ATKP, .20*1)
-			}
-			return s.Get(good.ER) >= 1.40
-		},
-		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			switch s.SetBonus {
 			case good.GladiatorsFinale:
 				s.NormalDMG += .35
@@ -452,7 +365,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 				s.Add(good.ATKP, .09*2)
 				s.Add(good.PhysicalP, .25)
 			}
-
+			return s.Get(good.ER) >= 1.40
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			phys := 1 + s.AllDMG + s.Get(good.PhysicalP)
 
 			dmg := s.TotalATK()
@@ -476,12 +391,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.DEFP).Max(1).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.HPP, .20)
-			case good.KeyOfKhajNisut:
-				s.Add(good.HPP, .20)
-			}
 			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.TenacityOfTheMillelith
 		},
 		IgnoreEnemy: true,
@@ -497,9 +406,15 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.DEFP, good.CR).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardSpine:
-				s.Add(good.CR, .08)
+			if t.Character.Constellation >= 4 {
+				s.Add(good.DEFP, .20)
+			}
+			switch s.SetBonus {
+			case good.NoblesseOblige:
+				s.Add(good.ATKP, .20)
+			case good.HuskOfOpulentDreams:
+				s.Add(good.GeoP, .06*4)
+				s.Add(good.DEFP, .06*4)
 			}
 			return s.Get(good.ER) >= 1.60 && s.Get(good.CR) >= .70
 		},
@@ -512,17 +427,8 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			if t.Character.Constellation >= 2 {
 				noelle.NormalDMG += .15
 			}
-			if t.Character.Constellation >= 4 {
-				s.Add(good.DEFP, .20)
-			}
-
-			switch s.SetBonus {
-			case good.NoblesseOblige:
-				s.Add(good.ATKP, .20)
+			if s.SetBonus == good.NoblesseOblige {
 				noelle.Add(good.ATKP, .20)
-			case good.HuskOfOpulentDreams:
-				s.Add(good.GeoP, .06*4)
-				s.Add(good.DEFP, .06*4)
 			}
 
 			// Burst: DMG Increase + A4
@@ -546,9 +452,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.ATKP).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardSpine:
-				s.Add(good.CR, .08)
+			switch s.SetBonus {
+			case good.NoblesseOblige:
+				s.Add(good.ATKP, .20)
 			}
 			return s.Get(good.ER) >= 2.00
 		},
@@ -563,9 +469,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			// A4: Spirit Communion Seal
 			ayaka.BurstDMG += .10
 
-			switch s.SetBonus {
-			case good.NoblesseOblige:
-				s.Add(good.ATKP, .20)
+			if s.SetBonus == good.NoblesseOblige {
 				ayaka.Add(good.ATKP, .20)
 			}
 
@@ -587,13 +491,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.CR).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			// A4: Waterborne Destiny
+			s.Add(good.HydroP, s.Get(good.ER)*.20)
 			return s.SetBonus == good.NoblesseOblige
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			// A4: Waterborne Destiny
-			s.Add(good.HydroP, s.Get(good.ER)*.20)
-
 			return (1 + s.Get(good.CR)*s.Get(good.ER)) * 100
 		},
 	},
@@ -621,21 +524,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.DEFP).Max(1).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.HPP, .20)
-			case good.FesteringDesire:
-				s.SkillCR += .12
-				s.SkillDMG += .32
-			}
 			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.ViridescentVenerer
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.ATK, s.TotalHP()*.012)
-			}
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.AnemoP)
 			dmg *= s.CritAverage(s.SkillCR, 0)
@@ -652,14 +543,16 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.EM).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch s.SetBonus {
+			case good.GildedDreams:
+				s.Add(good.EM, 50*3)
+			}
 			return true
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			var bonus float32
 			switch s.SetBonus {
-			case good.GildedDreams:
-				s.Add(good.EM, 50*3)
 			case good.FlowerOfParadiseLost:
 				bonus = .4 + .4*.25*4
 			}
@@ -678,36 +571,23 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.HPP).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.PrimordialJadeCutter:
-				s.Add(good.HPP, .20)
-			case good.KeyOfKhajNisut:
-				s.Add(good.HPP, .20)
-			}
 			// A1: Court of Dancing Petals
 			s.Add(good.EM, 100)
 			// Elemental Resonance: Soothing Water
 			s.Add(good.HPP, .25)
+			switch t.Weapon.Key {
+			case good.KeyOfKhajNisut:
+				hp := s.TotalHP()
+				s.Add(good.EM, hp*.0012*3)
+				s.Add(good.EM, hp*.002)
+			}
 			return true
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			hp := s.TotalHP()
-			switch t.Weapon.Key {
-			case good.KeyOfKhajNisut:
-				s.Add(good.EM, hp*.0012*3)
-				s.Add(good.EM, hp*.002)
-			}
-
-			// Dreamy Dance of Aeons
-			a4 := hp - 30000
-			if a4 < 0 {
-				a4 = 0
-			}
-			a4 *= .001 * .09
-			if a4 > 4 {
-				a4 = 4
-			}
+			// A4: Dreamy Dance of Aeons
+			a4 := max(0, s.TotalHP()-30000)
+			a4 = min(a4*.001*.09, 4)
 
 			// Bloom DMG
 			em := s.Get(good.EM)
@@ -767,12 +647,13 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			case good.AlleyHunter:
 				s.AllDMG += .30
 			}
+			switch s.SetBonus {
+			case good.NoblesseOblige:
+				s.Add(good.ATKP, .20)
+			}
 			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.NoblesseOblige
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			// Noblesse Oblige
-			s.Add(good.ATKP, .20)
-
 			dmg := s.TotalATK()
 			dmg *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.ElectroP)
 			dmg *= s.CritAverage(0, 0)
@@ -790,12 +671,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.HPP, good.DEFP).Max(2).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.SkywardPride:
-				s.AllDMG += .08
-			case good.SerpentSpine:
-				s.AllDMG += .10 * 5
-			}
 			return s.Get(good.ER) >= 1.30
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
@@ -817,10 +692,11 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.Rust:
-				s.NormalDMG += .80
-				s.ChargedDMG += -.10
+			switch s.SetBonus {
+			case good.ShimenawasReminiscence:
+				s.NormalDMG += .50
+			case good.CrimsonWitchOfFlames:
+				s.Add(good.PyroP, .15*.50*1)
 			}
 			// A1: Tricks of the Trouble-Maker
 			s.Add(good.PyroP, .02*6)
@@ -829,13 +705,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			em := s.Get(good.EM)
 			amp := 1 + (2.778*em)/(1400+em)
-
 			switch s.SetBonus {
-			case good.ShimenawasReminiscence:
-				s.NormalDMG += .50
 			case good.CrimsonWitchOfFlames:
 				amp += .15
-				s.Add(good.PyroP, .15*.5)
 			}
 
 			dmg := s.TotalATK()
@@ -861,24 +733,15 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(2).SlotMax(3, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.Rust:
-				s.NormalDMG += .80
-				s.ChargedDMG += -.10
-			case good.TheStringless:
-				s.SkillDMG += .48
-				s.BurstDMG += .48
+			switch s.SetBonus {
+			case good.GoldenTroupe:
+				s.SkillDMG += .25
 			}
 			return true
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			em := s.Get(good.EM)
 			agg := 1446.9 * (1 + (5*em)/(1200+em)) * 1.15
-
-			switch s.SetBonus {
-			case good.GoldenTroupe:
-				s.SkillDMG += .25
-			}
 
 			// Oz's ATK DMG
 			dmg := s.TotalATK() * 1.776
@@ -898,10 +761,9 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.TheCatch:
-				s.BurstCR += .12
-				s.BurstDMG += .32
+			switch s.SetBonus {
+			case good.CrimsonWitchOfFlames:
+				s.Add(good.PyroP, .15*.50*1)
 			}
 			return s.Get(good.ER) >= 2.00
 		},
@@ -911,7 +773,6 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			switch s.SetBonus {
 			case good.CrimsonWitchOfFlames:
 				amp += .15
-				s.Add(good.PyroP, .15*.5)
 			}
 
 			dmg := s.TotalATK()
@@ -934,11 +795,8 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
-			case good.SkywardPride:
-				s.AllDMG += .08
 			case good.BeaconOfTheReedSea:
-				s.Add(good.ATKP, .20*2)
-				s.Add(good.HPP, .32)
+				s.Add(good.ATKP, .20)
 			}
 			if t.Character.Constellation >= 1 {
 				s.Add(good.HPP, .20)
@@ -968,20 +826,14 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Skip(good.HPP, good.DEFP).Max(2).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			switch t.Weapon.Key {
-			case good.TheStringless:
-				s.SkillDMG += .48
-				s.BurstDMG += .48
+			switch s.SetBonus {
+			case good.GildedDreams:
+				s.Add(good.EM, 50*2)
 			}
 			return true
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			switch s.SetBonus {
-			case good.GildedDreams:
-				s.Add(good.EM, 50*2)
-			}
-
 			em := s.Get(good.EM)
 			spread := 1446.9 * (1 + (5*em)/(1200+em)) * 1.25
 

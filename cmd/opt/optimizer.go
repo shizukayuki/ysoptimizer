@@ -35,7 +35,7 @@ func (t *OptimizeTarget) CurrentState() OptimizeState {
 	state := t.calcBaseStats()
 	state.Build = t.CurArtifacts
 	state.calcArtifacts()
-	t.Buffs(t, &state)
+	buffs(t, &state)
 	state.Result = t.Target(t, &state)
 	if !t.IgnoreEnemy {
 		state.Result *= enemyMult(0, 0, 0)
@@ -97,7 +97,7 @@ func (t *OptimizeTarget) permuteSlot(state OptimizeState, slot good.SlotKey) Opt
 
 	inner = func(state OptimizeState, slot good.SlotKey) {
 		if slot >= good.SlotKey(len(state.Build)) {
-			if !t.Buffs(t, &cpy) {
+			if !buffs(t, &cpy) {
 				return
 			}
 			cpy.Result = t.Target(t, &cpy)
