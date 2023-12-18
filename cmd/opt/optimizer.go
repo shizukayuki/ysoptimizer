@@ -318,6 +318,10 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 		s.ChargedDMG += .15
 	case good.GoldenTroupe:
 		s.SkillDMG += .20
+	case good.SongOfDaysPast:
+		s.Add(good.Heal, .15)
+	case good.NighttimeWhispersInTheEchoingWoods:
+		s.Add(good.ATKP, .18)
 	}
 }
 
