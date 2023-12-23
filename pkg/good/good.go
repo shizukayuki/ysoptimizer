@@ -73,7 +73,7 @@ func (a Artifact) String() string {
 	var sb strings.Builder
 
 	// fmt.Fprintf(&sb, "[%s] ", strings.ToUpper(string(a.SlotKey.String()[0])))
-	fmt.Fprintf(&sb, "%-30s", a.SetKey)
+	fmt.Fprintf(&sb, "%-36s", a.SetKey)
 	fmt.Fprintf(&sb, "%-8s", fmt.Sprintf("%4.1f%%", a.CritValue()*100))
 	fmt.Fprintf(&sb, "%-30s", mainAffix)
 	sb.WriteString(affixes)
