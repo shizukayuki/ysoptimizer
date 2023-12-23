@@ -30,6 +30,8 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 		s.AllDMG += 5 * (.06 + .01*r)
 	case good.SkywardPride:
 		s.AllDMG += .08 + .02*r
+	case good.Verdict:
+		s.Add(good.ATKP, .20+.05*r)
 
 	case good.AquaSimulacra:
 		s.Add(good.HPP, .16+.04*r)

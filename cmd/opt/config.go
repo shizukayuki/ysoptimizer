@@ -10,6 +10,7 @@ var priority = []good.CharacterKey{
 	good.Furina,
 	good.RaidenShogun,
 	good.YaeMiko,
+	good.Navia,
 	good.Ganyu,
 	good.KamisatoAyaka,
 	good.Eula,
@@ -345,6 +346,37 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(0, 0)
 			// 1-Hit DMG
 			dmg *= 1.564
+			return dmg
+		},
+	},
+
+	good.Navia: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.GeoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.EM).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.Verdict:
+				s.SkillDMG += .18 * 2
+			}
+			switch s.SetBonus {
+			case good.NighttimeWhispersInTheEchoingWoods:
+				s.Add(good.GeoP, .20*(1+1.5))
+			}
+			// A1: Mutual Assistance Network
+			s.Add(good.ATKP, .20*2)
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			dmg := s.TotalATK()
+			dmg *= 1 + s.AllDMG + s.SkillDMG + (.15 * 3) + s.Get(good.GeoP)
+			dmg *= s.CritAverage(s.SkillCR, 0)
+			// Rosula Shardshot Base DMG
+			dmg *= 7.106 * 2
 			return dmg
 		},
 	},
