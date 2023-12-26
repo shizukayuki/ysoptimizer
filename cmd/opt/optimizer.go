@@ -55,7 +55,7 @@ func (t *OptimizeTarget) Optimize() OptimizeState {
 func (t *OptimizeTarget) permute(state OptimizeState) OptimizeState {
 	var wg sync.WaitGroup
 	queue := make(chan OptimizeState)
-	results := make([]OptimizeState, runtime.NumCPU())
+	results := make([]OptimizeState, max(1, runtime.NumCPU()-1))
 	slot := good.SlotKey(0)
 
 	for i := range results {
