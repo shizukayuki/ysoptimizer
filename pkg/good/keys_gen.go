@@ -136,6 +136,8 @@ const (
 	Furina              CharacterKey = 10000089
 	Chevreuse           CharacterKey = 10000090
 	Navia               CharacterKey = 10000091
+	Gaming              CharacterKey = 10000092
+	Xianyun             CharacterKey = 10000093
 )
 
 type WeaponKey uint32
@@ -282,6 +284,7 @@ const (
 	TulaytullahsRemembrance         WeaponKey = 14512
 	CashflowSupervision             WeaponKey = 14513
 	TomeOfTheEternalFlow            WeaponKey = 14514
+	CranesEchoingCall               WeaponKey = 14515
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301
