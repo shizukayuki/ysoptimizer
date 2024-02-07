@@ -23,6 +23,7 @@ var priority = []good.CharacterKey{
 	good.KukiShinobu,
 	good.Nilou,
 	good.SangonomiyaKokomi,
+	good.Xianyun,
 
 	good.Shenhe,
 	good.Mona,
@@ -377,6 +378,28 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(s.SkillCR, 0)
 			// Rosula Shardshot Base DMG
 			dmg *= 7.106 * 2
+			return dmg
+		},
+	},
+
+	good.Xianyun: {
+		Filter: NewFilter().
+			Sands(good.ATKP, good.ER).
+			Goblet(good.AnemoP, good.ATKP).
+			Circlet(good.CR, good.CD, good.ATKP).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.ViridescentVenerer
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// A4: Consider, the Adeptus in Her Realm
+			flatdmg := min(s.TotalATK()*2, 9000)
+
+			// High Plunge DMG
+			dmg := (s.TotalATK() * 2.6076) + flatdmg
+			dmg *= 1 + s.AllDMG + s.Get(good.AnemoP)
+			dmg *= s.CritAverage(0, 0)
 			return dmg
 		},
 	},
