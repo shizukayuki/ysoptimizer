@@ -65,7 +65,7 @@ func main() {
 	weap.Type = "WeaponKey"
 	weap.Keys = make(map[uint32]string)
 	for _, x := range excel.WeaponCodexExcelConfigData {
-		if x.IsDisuse {
+		if x.Weapon().StoryId == 0 {
 			continue
 		}
 		weap.Keys[x.WeaponId] = sanitizeName(x.Weapon().Name())

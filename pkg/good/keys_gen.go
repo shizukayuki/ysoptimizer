@@ -149,6 +149,7 @@ const (
 	CoolSteel                       WeaponKey = 11301
 	HarbingerOfDawn                 WeaponKey = 11302
 	TravelersHandySword             WeaponKey = 11303
+	DarkIronSword                   WeaponKey = 11304
 	FilletBlade                     WeaponKey = 11305
 	SkyriderSword                   WeaponKey = 11306
 	FavoniusSword                   WeaponKey = 11401

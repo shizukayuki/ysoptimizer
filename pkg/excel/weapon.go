@@ -33,6 +33,7 @@ type Weapon struct {
 		Type      string
 	}
 	WeaponPromoteId uint32
+	StoryId         uint32
 	Id              uint32
 	NameTextMapHash TextMapHash
 }
