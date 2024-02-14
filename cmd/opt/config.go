@@ -27,6 +27,7 @@ var priority = []good.CharacterKey{
 
 	good.Shenhe,
 	good.Mona,
+	good.Faruzan,
 	good.KujouSara,
 	good.YunJin,
 
@@ -714,6 +715,30 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(0, 0)
 			// Tengu Juurai: Titanbreaker DMG
 			dmg *= 8.192
+			return dmg
+		},
+	},
+
+	good.Faruzan: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.AnemoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch s.SetBonus {
+			case good.TenacityOfTheMillelith:
+				s.Add(good.ATKP, .20)
+			}
+			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.TenacityOfTheMillelith
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			dmg := s.TotalATK()
+			dmg *= 1 + s.AllDMG + s.Get(good.AnemoP)
+			dmg *= s.CritAverage(0, 0)
+			// The Wind's Secret Ways: Skill DMG
+			dmg *= 7.552
 			return dmg
 		},
 	},
