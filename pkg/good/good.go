@@ -5,7 +5,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/shizukayuki/ysoptimizer/pkg/excel"
+	"github.com/shizukayuki/excel-hk4e"
 )
 
 type Datebase struct {

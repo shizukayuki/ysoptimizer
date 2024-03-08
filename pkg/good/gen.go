@@ -8,11 +8,9 @@ import (
 	"html/template"
 	"log"
 	"os"
-	"regexp"
-	"strings"
 
+	"github.com/shizukayuki/excel-hk4e"
 	_ "github.com/shizukayuki/ysoptimizer/assets"
-	"github.com/shizukayuki/ysoptimizer/pkg/excel"
 )
 
 type Keys struct {
@@ -46,7 +44,7 @@ func main() {
 	relic.Type = "ArtifactSetKey"
 	relic.Keys = make(map[uint32]string)
 	for _, x := range excel.ReliquaryCodexExcelConfigData {
-		relic.Keys[x.SuitId] = sanitizeName(x.Set().Affix(0).Name())
+		relic.Keys[x.SuitId] = excel.Slug(x.Set().Affix(0).Name())
 	}
 	d.Data = append(d.Data, relic)
 
@@ -54,11 +52,11 @@ func main() {
 	char.Type = "CharacterKey"
 	char.Keys = make(map[uint32]string)
 	for _, x := range excel.AvatarCodexExcelConfigData {
-		char.Keys[x.AvatarId] = sanitizeName(x.Avatar().Name())
+		char.Keys[x.AvatarId] = excel.Slug(x.Avatar().Name())
 	}
 	// traveler
 	a := excel.FindAvatar(10000007)
-	char.Keys[a.Id] = sanitizeName(a.Name())
+	char.Keys[a.Id] = excel.Slug(a.Name())
 	d.Data = append(d.Data, char)
 
 	var weap Keys
@@ -68,7 +66,7 @@ func main() {
 		if x.Weapon().StoryId == 0 {
 			continue
 		}
-		weap.Keys[x.WeaponId] = sanitizeName(x.Weapon().Name())
+		weap.Keys[x.WeaponId] = excel.Slug(x.Weapon().Name())
 	}
 	d.Data = append(d.Data, weap)
 
@@ -79,15 +77,6 @@ func main() {
 	check(err)
 	err = os.WriteFile(outPath, out, 0o644)
 	check(err)
-}
-
-var reSanitizeName = regexp.MustCompile(`[^a-zA-Z0-9]`)
-
-func sanitizeName(s string) string {
-	s = strings.ReplaceAll(s, "'", "")
-	s = strings.Title(s)
-	s = reSanitizeName.ReplaceAllString(s, "")
-	return s
 }
 
 func check(err error) {

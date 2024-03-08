@@ -1,6 +1,6 @@
 package good
 
-import "github.com/shizukayuki/ysoptimizer/pkg/excel"
+import "github.com/shizukayuki/excel-hk4e"
 
 var (
 	FightPropToGOOD map[excel.FightProp]StatKey

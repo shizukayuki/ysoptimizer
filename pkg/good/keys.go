@@ -3,7 +3,7 @@ package good
 import (
 	"fmt"
 
-	"github.com/shizukayuki/ysoptimizer/pkg/excel"
+	"github.com/shizukayuki/excel-hk4e"
 )
 
 //go:generate enumer --json --linecomment --type=SlotKey $GOFILE

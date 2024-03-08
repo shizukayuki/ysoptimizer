@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/shizukayuki/ysoptimizer/pkg/excel"
+	"github.com/shizukayuki/excel-hk4e"
 )
 
 func init() {

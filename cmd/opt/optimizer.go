@@ -6,7 +6,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/shizukayuki/ysoptimizer/pkg/excel"
+	"github.com/shizukayuki/excel-hk4e"
 	"github.com/shizukayuki/ysoptimizer/pkg/good"
 )
 
