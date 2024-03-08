@@ -50,8 +50,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch s.SetBonus {
 			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
+				s.Add(good.CR, .20*2)
 			}
 			// A1: Undivided Heart
 			// s.Add(good.CR, .20)
@@ -84,8 +83,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			}
 			switch s.SetBonus {
 			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
+				s.Add(good.CR, .20*1)
 			}
 			// Elemental Resonance: Shattering Ice
 			s.Add(good.CR, .15)
@@ -111,8 +109,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch s.SetBonus {
 			case good.BlizzardStrayer:
-				s.Add(good.CR, .20)
-				s.Add(good.CR, .20)
+				s.Add(good.CR, .20*2)
 			}
 			// A1: Regina Probationum
 			s.Add(good.CR, .12)
