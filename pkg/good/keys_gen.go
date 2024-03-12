@@ -138,6 +138,7 @@ const (
 	Navia               CharacterKey = 10000091
 	Gaming              CharacterKey = 10000092
 	Xianyun             CharacterKey = 10000093
+	Chiori              CharacterKey = 10000094
 )
 
 type WeaponKey uint32
@@ -185,6 +186,7 @@ const (
 	KeyOfKhajNisut                  WeaponKey = 11511
 	LightOfFoliarIncision           WeaponKey = 11512
 	SplendorOfTranquilWaters        WeaponKey = 11513
+	UrakuMisugiri                   WeaponKey = 11514
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
@@ -241,6 +243,7 @@ const (
 	MissiveWindspear                WeaponKey = 13419
 	BalladOfTheFjords               WeaponKey = 13424
 	RightfulReward                  WeaponKey = 13425
+	DialoguesOfTheDesertSages       WeaponKey = 13426
 	ProspectorsDrill                WeaponKey = 13427
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
