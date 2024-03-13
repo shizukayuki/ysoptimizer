@@ -16,6 +16,7 @@ var priority = []good.CharacterKey{
 	good.Eula,
 	good.Yoimiya,
 	good.Fischl,
+	good.Chiori,
 	good.Xiangling,
 	good.Beidou,
 
@@ -345,6 +346,35 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(0, 0)
 			// 1-Hit DMG
 			dmg *= 1.564
+			return dmg
+		},
+	},
+
+	good.Chiori: {
+		Filter: NewFilter().
+			Sands(good.ATKP, good.DEFP).
+			Goblet(good.GeoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.EM, good.ER).
+			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.UrakuMisugiri:
+				s.NormalDMG += .16
+				s.SkillDMG += .24
+			}
+			switch s.SetBonus {
+			case good.GoldenTroupe:
+				s.SkillDMG += .25
+			}
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// Tamoto DMG
+			dmg := s.TotalATK()*1.48 + s.TotalDEF()*1.85
+			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.GeoP)
+			dmg *= s.CritAverage(s.SkillCR, 0)
 			return dmg
 		},
 	},

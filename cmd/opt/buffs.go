@@ -22,6 +22,10 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 	case good.PrimordialJadeCutter:
 		s.Add(good.HPP, .20+.05*r)
 		s.Add(good.ATK, s.TotalHP()*(.012+.003*r))
+	case good.UrakuMisugiri:
+		s.NormalDMG += .16 + .04*r
+		s.SkillDMG += .24 + .06*r
+		s.Add(good.DEFP, .20+.05*r)
 
 	case good.BeaconOfTheReedSea:
 		s.Add(good.ATKP, .20+.05*r)
