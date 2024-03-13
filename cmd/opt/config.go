@@ -335,17 +335,22 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 				s.Add(good.GeoP, .06*4)
 				s.Add(good.DEFP, .06*4)
 			}
-			return s.Get(good.ER) >= 1.60
+			return s.Get(good.ER) >= 1.35
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			// Burst: ATK Bonus + C6
-			bonusATK := s.TotalDEF() * (.85 + .50)
+			def := s.TotalDEF()
 
-			dmg := s.TotalATK() + bonusATK
+			// Burst: ATK Bonus + C6
+			bonusATK := def * (.85 + .50)
+			// 1-Hit DMG
+			dmg := (s.TotalATK() + bonusATK) * 1.564
+
+			if t.Weapon.Key == good.RedhornStonethresher {
+				dmg += def * .40
+			}
+
 			dmg *= 1 + s.AllDMG + s.NormalDMG + s.Get(good.GeoP)
 			dmg *= s.CritAverage(0, 0)
-			// 1-Hit DMG
-			dmg *= 1.564
 			return dmg
 		},
 	},

@@ -30,6 +30,8 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 	case good.BeaconOfTheReedSea:
 		s.Add(good.ATKP, .20+.05*r)
 		s.Add(good.HPP, .32+.08*r)
+	case good.RedhornStonethresher:
+		s.Add(good.DEFP, .28+.07*r)
 	case good.SerpentSpine:
 		s.AllDMG += 5 * (.06 + .01*r)
 	case good.SkywardPride:
