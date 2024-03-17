@@ -3,17 +3,15 @@ package assets
 import (
 	"encoding/json"
 	"os"
+	"strings"
 
 	"github.com/shizukayuki/excel-hk4e"
 )
 
-func init() {
-	homedir, err := os.UserHomeDir()
-	if err != nil {
-		panic(err)
-	}
-	err = excel.LoadResources(func(name string, v any) error {
-		d, err := os.ReadFile(homedir + "/git/GenshinData/" + name)
+func Load(dir string) {
+	dir = strings.TrimSuffix(dir, "/")
+	err := excel.LoadResources(func(name string, v any) error {
+		d, err := os.ReadFile(dir + "/" + name)
 		if err != nil {
 			return err
 		}

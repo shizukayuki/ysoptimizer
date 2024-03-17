@@ -9,17 +9,29 @@ import (
 	"strings"
 	"time"
 
-	_ "github.com/shizukayuki/ysoptimizer/assets"
+	"github.com/shizukayuki/ysoptimizer/assets"
 	"github.com/shizukayuki/ysoptimizer/pkg/good"
 )
 
 var (
 	optimized = map[good.CharacterKey]OptimizeState{}
 	slow      = flag.Bool("slow", false, "Run in slow mode. Don't filter artifacts that have dead stats")
+	path      = flag.String("path", "./GOOD.json", "Location of GOOD.json")
+	excelPath = flag.String("genshin-data", "", "Location of Excel file. Default ~/git/GenshinData")
 )
 
 func main() {
 	flag.Parse()
+
+	if *excelPath == "" {
+		homedir, err := os.UserHomeDir()
+		if err != nil {
+			panic(err)
+		}
+		*excelPath = homedir + "/git/GenshinData"
+	}
+
+	assets.Load(*excelPath)
 
 	var prio []good.CharacterKey
 	for _, s := range flag.Args() {
@@ -34,7 +46,7 @@ func main() {
 		prio = priority
 	}
 
-	db := ParseGODatebase("./GOOD.json")
+	db := ParseGODatebase(*path)
 	for char, t := range config {
 		t.Datebase = db
 
