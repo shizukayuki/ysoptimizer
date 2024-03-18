@@ -6,20 +6,43 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
-	_ "github.com/shizukayuki/ysoptimizer/assets"
+	"github.com/shizukayuki/excel-hk4e"
 	"github.com/shizukayuki/ysoptimizer/pkg/good"
 )
 
 var (
 	optimized = map[good.CharacterKey]OptimizeState{}
 	slow      = flag.Bool("slow", false, "Run in slow mode. Don't filter artifacts that have dead stats")
+	path      = flag.String("good-file", "./GOOD.json", "Location of GOOD.json")
+	excelPath = flag.String("genshin-data", "", "Specify GenshinData path. Defaults to $HOME/git/GenshinData or $GENSHIN_DATA_REPO if set")
 )
 
 func main() {
 	flag.Parse()
+
+	repo := os.Getenv("GENSHIN_DATA_REPO")
+	if *excelPath != "" {
+		repo = *excelPath
+	}
+	if repo == "" {
+		home, err := os.UserHomeDir()
+		if err != nil {
+			check(err)
+		}
+		repo = filepath.Join(home, "git", "GenshinData")
+	}
+	err := excel.LoadResources(func(name string, v any) error {
+		d, err := os.ReadFile(filepath.Join(repo, name))
+		if err != nil {
+			return err
+		}
+		return json.Unmarshal(d, v)
+	})
+	check(err)
 
 	var prio []good.CharacterKey
 	for _, s := range flag.Args() {
@@ -34,7 +57,7 @@ func main() {
 		prio = priority
 	}
 
-	db := ParseGODatebase("./GOOD.json")
+	db := ParseGODatebase(*path)
 	for char, t := range config {
 		t.Datebase = db
 
