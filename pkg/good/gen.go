@@ -4,13 +4,15 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
+	"flag"
 	"go/format"
 	"html/template"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/shizukayuki/excel-hk4e"
-	_ "github.com/shizukayuki/ysoptimizer/assets"
 )
 
 type Keys struct {
@@ -33,7 +35,33 @@ const (
 {{- end }}
 `
 
+var (
+	excelPath = flag.String("genshin-data", "", "Specify GenshinData path. Defaults to $HOME/git/GenshinData or $GENSHIN_DATA_REPO if set")
+)
+
 func main() {
+	flag.Parse()
+
+	repo := os.Getenv("GENSHIN_DATA_REPO")
+	if *excelPath != "" {
+		repo = *excelPath
+	}
+	if repo == "" {
+		home, err := os.UserHomeDir()
+		if err != nil {
+			check(err)
+		}
+		repo = filepath.Join(home, "git", "GenshinData")
+	}
+	err := excel.LoadResources(func(name string, v any) error {
+		d, err := os.ReadFile(filepath.Join(repo, name))
+		if err != nil {
+			return err
+		}
+		return json.Unmarshal(d, v)
+	})
+	check(err)
+
 	d := struct {
 		Name string
 		Data []Keys
@@ -71,7 +99,7 @@ func main() {
 	d.Data = append(d.Data, weap)
 
 	var buf bytes.Buffer
-	err := template.Must(template.New("").Parse(tmpl)).Execute(&buf, d)
+	err = template.Must(template.New("").Parse(tmpl)).Execute(&buf, d)
 	check(err)
 	out, err := format.Source(buf.Bytes())
 	check(err)
