@@ -893,7 +893,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			// Pyronado DMG
 			novape := dmg * 2.24
 			vape := novape * amp * 1.5
-			dmg = vape + novape
+			dmg = vape*2 + novape
 			return dmg
 		},
 	},
