@@ -322,6 +322,10 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 		s.Add(good.Heal, .15)
 	case good.NighttimeWhispersInTheEchoingWoods:
 		s.Add(good.ATKP, .18)
+	case good.FragmentOfHarmonicWhimsy:
+		s.Add(good.ATKP, .18)
+	case good.UnfinishedReverie:
+		s.Add(good.ATKP, .18)
 	}
 }
 

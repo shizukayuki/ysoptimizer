@@ -53,6 +53,8 @@ const (
 	GoldenTroupe                       ArtifactSetKey = 15032
 	SongOfDaysPast                     ArtifactSetKey = 15033
 	NighttimeWhispersInTheEchoingWoods ArtifactSetKey = 15034
+	FragmentOfHarmonicWhimsy           ArtifactSetKey = 15035
+	UnfinishedReverie                  ArtifactSetKey = 15036
 )
 
 type CharacterKey uint32
@@ -139,6 +141,7 @@ const (
 	Gaming              CharacterKey = 10000092
 	Xianyun             CharacterKey = 10000093
 	Chiori              CharacterKey = 10000094
+	Arlecchino          CharacterKey = 10000096
 )
 
 type WeaponKey uint32
@@ -252,6 +255,7 @@ const (
 	CalamityQueller                 WeaponKey = 13507
 	EngulfingLightning              WeaponKey = 13509
 	StaffOfTheScarletSands          WeaponKey = 13511
+	CrimsonMoonsSemblance           WeaponKey = 13512
 	ApprenticesNotes                WeaponKey = 14101
 	PocketGrimoire                  WeaponKey = 14201
 	MagicGuide                      WeaponKey = 14301
