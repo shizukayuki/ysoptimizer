@@ -146,11 +146,20 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			return true
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			dmg := s.TotalATK()
+			var bonus float32
+			switch s.SetBonus {
+			case good.ThunderingFury:
+				bonus = .20
+			}
+
+			em := s.Get(good.EM)
+			agg := 1446.9 * (1 + (5*em)/(1200+em) + bonus) * 1.15
+
+			// Slashing DMG
+			dmg := s.TotalATK() * 3.024
+			dmg = dmg*2 + (dmg + agg)
 			dmg *= 1 + s.AllDMG + s.Get(good.ElectroP)
 			dmg *= s.CritAverage(0, 0)
-			// Slashing DMG
-			dmg *= 3.024
 			return dmg
 		},
 	},
@@ -370,9 +379,14 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 				s.SkillDMG += .24
 			}
 			switch s.SetBonus {
+			case good.HuskOfOpulentDreams:
+				s.Add(good.GeoP, .06*4)
+				s.Add(good.DEFP, .06*4)
 			case good.GoldenTroupe:
 				s.SkillDMG += .25
 			}
+			// A4: The Finishing Touch
+			// s.Add(good.GeoP, .20)
 			return true
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
@@ -389,8 +403,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Sands(good.ATKP).
 			Goblet(good.GeoP).
 			Circlet(good.CR, good.CD).
-			Skip(good.HPP, good.DEFP, good.EM).
-			Max(1).SlotMax(2, good.Sands, good.Goblet, good.Circlet).
+			Skip(good.HPP, good.DEFP, good.EM).Max(2).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			switch t.Weapon.Key {
@@ -607,20 +620,18 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 	good.Jean: {
 		Filter: NewFilter().
 			Sands(good.ATKP).
-			Goblet(good.AnemoP).
-			Circlet(good.CR, good.CD).
+			Goblet(good.AnemoP, good.ATKP).
+			Circlet(good.CR, good.CD, good.ATKP).
 			Skip(good.DEFP).Max(1).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
 			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.ViridescentVenerer
 		},
+		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
-			dmg := s.TotalATK()
-			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.AnemoP)
-			dmg *= s.CritAverage(s.SkillCR, 0)
-			// Skill DMG
-			dmg *= 4.964
-			return dmg
+			heal := s.TotalATK()*4.2704 + 3132.215
+			heal *= 1 + s.Get(good.Heal)
+			return heal
 		},
 	},
 
