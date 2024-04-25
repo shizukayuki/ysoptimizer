@@ -17,6 +17,7 @@ var priority = []good.CharacterKey{
 	good.Navia,
 	good.Noelle,
 	good.Chiori,
+	good.Arlecchino,
 	good.Xiangling,
 	good.Beidou,
 
@@ -937,6 +938,55 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg := (s.TotalATK() * 3.024) + flatdmg
 			dmg *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.PyroP)
 			dmg *= s.CritAverage(0, 0)
+			return dmg
+		},
+	},
+
+	good.Arlecchino: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.PyroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.CrimsonMoonsSemblance:
+				s.AllDMG += .12 + .24
+			case good.StaffOfTheScarletSands:
+				s.Add(good.ATK, s.Get(good.EM)*1*.28)
+			}
+			switch s.SetBonus {
+			case good.GladiatorsFinale:
+				s.NormalDMG += .35
+			case good.FragmentOfHarmonicWhimsy:
+				s.AllDMG += .18 * 3
+			}
+			// A4: The Balemoon Alone May Know
+			s.Add(good.PyroP, .40)
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			em := s.Get(good.EM)
+			amp := 1 + (2.778*em)/(1400+em)
+
+			atk := s.TotalATK()
+
+			// Masque of the Red Death Increase
+			var inc float32 = 2.2120
+			if t.Character.Constellation >= 1 {
+				inc += 1
+			}
+			flatdmg := atk * 1.45 * inc
+
+			// 1-Hit DMG
+			dmg := atk*.873 + flatdmg
+			dmg *= 1 + s.AllDMG + s.NormalDMG + s.Get(good.PyroP)
+			dmg *= s.CritAverage(0, 0)
+
+			vape := dmg * amp * 1.5
+			dmg = vape + dmg*2
+
 			return dmg
 		},
 	},
