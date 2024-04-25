@@ -374,7 +374,7 @@ func (s OptimizeState) String() string {
 }
 
 func enemyMult(resist, defReduce, defIgnore float32) float32 {
-	var charLvl, enemyLvl uint32
+	var charLvl, enemyLvl float32
 	charLvl = 90
 	enemyLvl = 90
 
@@ -388,10 +388,11 @@ func enemyMult(resist, defReduce, defIgnore float32) float32 {
 		res = 1 - res
 	}
 
-	if defReduce > .9 {
-		defReduce = .9
-	}
-	def := float32(charLvl+100) / (float32(charLvl+100) + float32(enemyLvl+100)*(1-defReduce)*(1-defIgnore))
+	def := enemyLvl + 100
+	def *= 1 - min(defReduce, .9)
+	def *= 1 - defIgnore
+	def += charLvl + 100
+	def = (charLvl + 100) / def
 
 	return def * res
 }
