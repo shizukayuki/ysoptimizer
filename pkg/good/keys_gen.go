@@ -141,7 +141,10 @@ const (
 	Gaming              CharacterKey = 10000092
 	Xianyun             CharacterKey = 10000093
 	Chiori              CharacterKey = 10000094
+	Sigewinne           CharacterKey = 10000095
 	Arlecchino          CharacterKey = 10000096
+	Sethos              CharacterKey = 10000097
+	Clorinde            CharacterKey = 10000098
 )
 
 type WeaponKey uint32
@@ -190,6 +193,7 @@ const (
 	LightOfFoliarIncision           WeaponKey = 11512
 	SplendorOfTranquilWaters        WeaponKey = 11513
 	UrakuMisugiri                   WeaponKey = 11514
+	Absolution                      WeaponKey = 11515
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
@@ -321,6 +325,7 @@ const (
 	IbisPiercer                     WeaponKey = 15419
 	ScionOfTheBlazingSun            WeaponKey = 15424
 	SongOfStillness                 WeaponKey = 15425
+	Cloudforged                     WeaponKey = 15426
 	RangeGauge                      WeaponKey = 15427
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
@@ -330,4 +335,5 @@ const (
 	ThunderingPulse                 WeaponKey = 15509
 	HuntersPath                     WeaponKey = 15511
 	TheFirstGreatMagic              WeaponKey = 15512
+	SilvershowerHeartstrings        WeaponKey = 15513
 )
