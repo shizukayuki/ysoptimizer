@@ -18,6 +18,7 @@ var priority = []good.CharacterKey{
 	good.Noelle,
 	good.Chiori,
 	good.Arlecchino,
+	good.Clorinde,
 	good.Xiangling,
 	good.Beidou,
 
@@ -160,6 +161,48 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg := s.TotalATK() * 3.024
 			dmg = dmg*2 + (dmg + agg)
 			dmg *= 1 + s.AllDMG + s.Get(good.ElectroP)
+			dmg *= s.CritAverage(0, 0)
+			return dmg
+		},
+	},
+
+	good.Clorinde: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.ElectroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP, good.ER).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.MistsplitterReforged:
+				s.Add(good.ElectroP, .16)
+			}
+			switch s.SetBonus {
+			case good.GladiatorsFinale:
+				s.NormalDMG += .35
+			}
+			// A4: Lawful Remuneration
+			s.Add(good.CR, .20)
+			return s.SetBonus == good.ThunderingFury
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			var bonus float32
+			switch s.SetBonus {
+			case good.ThunderingFury:
+				bonus = .20
+			}
+
+			em := s.Get(good.EM)
+			agg := 1446.9 * (1 + (5*em)/(1200+em) + bonus) * 1.15
+
+			// A1: Dark-Shattering Flame
+			flatdmg := min(s.TotalATK()*.20*3, 1800)
+
+			// Impale the Night DMG
+			dmg := s.TotalATK()*.808 + flatdmg
+			dmg = dmg*2 + (dmg + agg)
+			dmg *= 1 + s.AllDMG + s.NormalDMG + s.Get(good.ElectroP)
 			dmg *= s.CritAverage(0, 0)
 			return dmg
 		},
