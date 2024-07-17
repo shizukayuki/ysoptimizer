@@ -145,6 +145,7 @@ const (
 	Arlecchino          CharacterKey = 10000096
 	Sethos              CharacterKey = 10000097
 	Clorinde            CharacterKey = 10000098
+	Emilie              CharacterKey = 10000099
 )
 
 type WeaponKey uint32
@@ -260,6 +261,7 @@ const (
 	EngulfingLightning              WeaponKey = 13509
 	StaffOfTheScarletSands          WeaponKey = 13511
 	CrimsonMoonsSemblance           WeaponKey = 13512
+	LumidouceElegy                  WeaponKey = 13513
 	ApprenticesNotes                WeaponKey = 14101
 	PocketGrimoire                  WeaponKey = 14201
 	MagicGuide                      WeaponKey = 14301
