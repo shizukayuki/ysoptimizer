@@ -39,6 +39,7 @@ var priority = []good.CharacterKey{
 	good.Rosaria,
 	good.Collei,
 	good.Layla,
+	good.Kirara,
 }
 
 var config = map[good.CharacterKey]*OptimizeTarget{
@@ -525,6 +526,21 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			combo += (phys + s.BurstDMG) * (7.256 + 1.482*13)
 			dmg *= combo
 			return dmg
+		},
+	},
+
+	good.Kirara: {
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HPP).
+			Circlet(good.CR).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			return s.Get(good.ER) >= 1.60
+		},
+		IgnoreEnemy: true,
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			return s.TotalHP()
 		},
 	},
 
