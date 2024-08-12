@@ -36,10 +36,11 @@ var priority = []good.CharacterKey{
 
 	good.Jean,
 	good.Dehya,
-	good.Rosaria,
 	good.Collei,
+	good.Emilie,
 	good.Layla,
 	good.Kirara,
+	good.Rosaria,
 }
 
 var config = map[good.CharacterKey]*OptimizeTarget{
@@ -1046,6 +1047,49 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			vape := dmg * amp * 1.5
 			dmg = vape + dmg*2
 
+			return dmg
+		},
+	},
+
+	good.Emilie: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.DendroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.Deathmatch:
+				s.Add(good.ATKP, .32)
+				s.Add(good.DEFP, .32)
+			case good.StaffOfTheScarletSands:
+				s.Add(good.ATK, s.Get(good.EM)*1*.28)
+			case good.MissiveWindspear:
+				s.Add(good.ATKP, .24)
+				s.Add(good.EM, 96)
+			}
+			switch s.SetBonus {
+			case good.UnfinishedReverie:
+				s.AllDMG += .50
+			}
+			// A4: Rectification
+			s.AllDMG += min(s.TotalATK()*.001, .36)
+			return true
+		},
+		IgnoreEnemy: true,
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// Level 2 Lumidouce Case Attack DMG
+			dmg := s.TotalATK() * 1.428
+			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.DendroP)
+			dmg *= s.CritAverage(0, 0)
+
+			switch s.SetBonus {
+			case good.DeepwoodMemories:
+				dmg *= enemyMult(-.30, 0, 0)
+			default:
+				dmg *= enemyMult(0, 0, 0)
+			}
 			return dmg
 		},
 	},
