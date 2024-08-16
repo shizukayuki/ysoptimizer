@@ -534,10 +534,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Filter: NewFilter().
 			Sands(good.HPP).
 			Goblet(good.HPP).
-			Circlet(good.CR).
+			Circlet(good.HPP, good.CR).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			return s.Get(good.ER) >= 1.60
+			return s.Get(good.ER) >= 1.60 && s.Get(good.CR) >= .70
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
