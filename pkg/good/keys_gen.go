@@ -55,6 +55,8 @@ const (
 	NighttimeWhispersInTheEchoingWoods ArtifactSetKey = 15034
 	FragmentOfHarmonicWhimsy           ArtifactSetKey = 15035
 	UnfinishedReverie                  ArtifactSetKey = 15036
+	ScrollOfTheHeroOfCinderCity        ArtifactSetKey = 15037
+	ObsidianCodex                      ArtifactSetKey = 15038
 )
 
 type CharacterKey uint32
@@ -146,6 +148,9 @@ const (
 	Sethos              CharacterKey = 10000097
 	Clorinde            CharacterKey = 10000098
 	Emilie              CharacterKey = 10000099
+	Kachina             CharacterKey = 10000100
+	Kinich              CharacterKey = 10000101
+	Mualani             CharacterKey = 10000102
 )
 
 type WeaponKey uint32
@@ -183,6 +188,7 @@ const (
 	FleuveCendreFerryman            WeaponKey = 11426
 	TheDockhandsAssistant           WeaponKey = 11427
 	SwordOfNarzissenkreuz           WeaponKey = 11428
+	FluteOfEzpitzal                 WeaponKey = 11431
 	AquilaFavonia                   WeaponKey = 11501
 	SkywardBlade                    WeaponKey = 11502
 	FreedomSworn                    WeaponKey = 11503
@@ -223,6 +229,7 @@ const (
 	TidalShadow                     WeaponKey = 12425
 	UltimateOverlordsMegaMagicSword WeaponKey = 12426
 	PortablePowerSaw                WeaponKey = 12427
+	EarthShaker                     WeaponKey = 12431
 	SkywardPride                    WeaponKey = 12501
 	WolfsGravestone                 WeaponKey = 12502
 	SongOfBrokenPines               WeaponKey = 12503
@@ -230,6 +237,7 @@ const (
 	RedhornStonethresher            WeaponKey = 12510
 	BeaconOfTheReedSea              WeaponKey = 12511
 	Verdict                         WeaponKey = 12512
+	FangOfTheMountainKing           WeaponKey = 12513
 	BeginnersProtector              WeaponKey = 13101
 	IronPoint                       WeaponKey = 13201
 	WhiteTassel                     WeaponKey = 13301
@@ -253,6 +261,7 @@ const (
 	RightfulReward                  WeaponKey = 13425
 	DialoguesOfTheDesertSages       WeaponKey = 13426
 	ProspectorsDrill                WeaponKey = 13427
+	FootprintOfTheRainbow           WeaponKey = 13431
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
 	VortexVanquisher                WeaponKey = 13504
@@ -288,6 +297,8 @@ const (
 	SacrificialJade                 WeaponKey = 14424
 	FlowingPurity                   WeaponKey = 14425
 	BalladOfTheBoundlessBlue        WeaponKey = 14426
+	AshGravenDrinkingHorn           WeaponKey = 14427
+	RingOfYaxche                    WeaponKey = 14431
 	SkywardAtlas                    WeaponKey = 14501
 	LostPrayerToTheSacredWinds      WeaponKey = 14502
 	MemoryOfDust                    WeaponKey = 14504
@@ -299,6 +310,7 @@ const (
 	CashflowSupervision             WeaponKey = 14513
 	TomeOfTheEternalFlow            WeaponKey = 14514
 	CranesEchoingCall               WeaponKey = 14515
+	SurfsUp                         WeaponKey = 14516
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301
@@ -329,6 +341,7 @@ const (
 	SongOfStillness                 WeaponKey = 15425
 	Cloudforged                     WeaponKey = 15426
 	RangeGauge                      WeaponKey = 15427
+	ChainBreaker                    WeaponKey = 15431
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
 	ElegyForTheEnd                  WeaponKey = 15503

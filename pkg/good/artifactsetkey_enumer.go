@@ -19,8 +19,8 @@ const (
 	_ArtifactSetKeyLowerName_3 = "gladiatorsfinaleviridescentvenererwandererstroupe"
 	_ArtifactSetKeyName_4      = "ThunderingFuryCrimsonWitchOfFlamesNoblesseObligeBloodstainedChivalryPrayersForIlluminationPrayersForDestinyPrayersForWisdom"
 	_ArtifactSetKeyLowerName_4 = "thunderingfurycrimsonwitchofflamesnoblesseobligebloodstainedchivalryprayersforilluminationprayersfordestinyprayersforwisdom"
-	_ArtifactSetKeyName_5      = "PrayersToSpringtimeArchaicPetraRetracingBolideHeartOfDepthTenacityOfTheMillelithPaleFlameShimenawasReminiscenceEmblemOfSeveredFateHuskOfOpulentDreamsOceanHuedClamVermillionHereafterEchoesOfAnOfferingDeepwoodMemoriesGildedDreamsDesertPavilionChronicleFlowerOfParadiseLostNymphsDreamVourukashasGlowMarechausseeHunterGoldenTroupeSongOfDaysPastNighttimeWhispersInTheEchoingWoodsFragmentOfHarmonicWhimsyUnfinishedReverie"
-	_ArtifactSetKeyLowerName_5 = "prayerstospringtimearchaicpetraretracingbolideheartofdepthtenacityofthemillelithpaleflameshimenawasreminiscenceemblemofseveredfatehuskofopulentdreamsoceanhuedclamvermillionhereafterechoesofanofferingdeepwoodmemoriesgildeddreamsdesertpavilionchronicleflowerofparadiselostnymphsdreamvourukashasglowmarechausseehuntergoldentroupesongofdayspastnighttimewhispersintheechoingwoodsfragmentofharmonicwhimsyunfinishedreverie"
+	_ArtifactSetKeyName_5      = "PrayersToSpringtimeArchaicPetraRetracingBolideHeartOfDepthTenacityOfTheMillelithPaleFlameShimenawasReminiscenceEmblemOfSeveredFateHuskOfOpulentDreamsOceanHuedClamVermillionHereafterEchoesOfAnOfferingDeepwoodMemoriesGildedDreamsDesertPavilionChronicleFlowerOfParadiseLostNymphsDreamVourukashasGlowMarechausseeHunterGoldenTroupeSongOfDaysPastNighttimeWhispersInTheEchoingWoodsFragmentOfHarmonicWhimsyUnfinishedReverieScrollOfTheHeroOfCinderCityObsidianCodex"
+	_ArtifactSetKeyLowerName_5 = "prayerstospringtimearchaicpetraretracingbolideheartofdepthtenacityofthemillelithpaleflameshimenawasreminiscenceemblemofseveredfatehuskofopulentdreamsoceanhuedclamvermillionhereafterechoesofanofferingdeepwoodmemoriesgildeddreamsdesertpavilionchronicleflowerofparadiselostnymphsdreamvourukashasglowmarechausseehuntergoldentroupesongofdayspastnighttimewhispersintheechoingwoodsfragmentofharmonicwhimsyunfinishedreveriescrolloftheheroofcindercityobsidiancodex"
 )
 
 var (
@@ -29,7 +29,7 @@ var (
 	_ArtifactSetKeyIndex_2 = [...]uint8{0, 15, 29, 39, 52}
 	_ArtifactSetKeyIndex_3 = [...]uint8{0, 16, 34, 49}
 	_ArtifactSetKeyIndex_4 = [...]uint8{0, 14, 34, 48, 68, 90, 107, 123}
-	_ArtifactSetKeyIndex_5 = [...]uint16{0, 19, 31, 46, 58, 80, 89, 111, 130, 149, 162, 181, 199, 215, 227, 250, 270, 281, 296, 314, 326, 340, 374, 398, 415}
+	_ArtifactSetKeyIndex_5 = [...]uint16{0, 19, 31, 46, 58, 80, 89, 111, 130, 149, 162, 181, 199, 215, 227, 250, 270, 281, 296, 314, 326, 340, 374, 398, 415, 442, 455}
 )
 
 func (i ArtifactSetKey) String() string {
@@ -48,7 +48,7 @@ func (i ArtifactSetKey) String() string {
 	case 15005 <= i && i <= 15011:
 		i -= 15005
 		return _ArtifactSetKeyName_4[_ArtifactSetKeyIndex_4[i]:_ArtifactSetKeyIndex_4[i+1]]
-	case 15013 <= i && i <= 15036:
+	case 15013 <= i && i <= 15038:
 		i -= 15013
 		return _ArtifactSetKeyName_5[_ArtifactSetKeyIndex_5[i]:_ArtifactSetKeyIndex_5[i+1]]
 	default:
@@ -112,9 +112,11 @@ func _ArtifactSetKeyNoOp() {
 	_ = x[NighttimeWhispersInTheEchoingWoods-(15034)]
 	_ = x[FragmentOfHarmonicWhimsy-(15035)]
 	_ = x[UnfinishedReverie-(15036)]
+	_ = x[ScrollOfTheHeroOfCinderCity-(15037)]
+	_ = x[ObsidianCodex-(15038)]
 }
 
-var _ArtifactSetKeyValues = []ArtifactSetKey{UnknownArtifactSetKey, ResolutionOfSojourner, BraveHeart, DefendersWill, TinyMiracle, Berserker, MartialArtist, Instructor, Gambler, TheExile, Adventurer, LuckyDog, Scholar, TravelingDoctor, BlizzardStrayer, Thundersoother, Lavawalker, MaidenBeloved, GladiatorsFinale, ViridescentVenerer, WanderersTroupe, ThunderingFury, CrimsonWitchOfFlames, NoblesseOblige, BloodstainedChivalry, PrayersForIllumination, PrayersForDestiny, PrayersForWisdom, PrayersToSpringtime, ArchaicPetra, RetracingBolide, HeartOfDepth, TenacityOfTheMillelith, PaleFlame, ShimenawasReminiscence, EmblemOfSeveredFate, HuskOfOpulentDreams, OceanHuedClam, VermillionHereafter, EchoesOfAnOffering, DeepwoodMemories, GildedDreams, DesertPavilionChronicle, FlowerOfParadiseLost, NymphsDream, VourukashasGlow, MarechausseeHunter, GoldenTroupe, SongOfDaysPast, NighttimeWhispersInTheEchoingWoods, FragmentOfHarmonicWhimsy, UnfinishedReverie}
+var _ArtifactSetKeyValues = []ArtifactSetKey{UnknownArtifactSetKey, ResolutionOfSojourner, BraveHeart, DefendersWill, TinyMiracle, Berserker, MartialArtist, Instructor, Gambler, TheExile, Adventurer, LuckyDog, Scholar, TravelingDoctor, BlizzardStrayer, Thundersoother, Lavawalker, MaidenBeloved, GladiatorsFinale, ViridescentVenerer, WanderersTroupe, ThunderingFury, CrimsonWitchOfFlames, NoblesseOblige, BloodstainedChivalry, PrayersForIllumination, PrayersForDestiny, PrayersForWisdom, PrayersToSpringtime, ArchaicPetra, RetracingBolide, HeartOfDepth, TenacityOfTheMillelith, PaleFlame, ShimenawasReminiscence, EmblemOfSeveredFate, HuskOfOpulentDreams, OceanHuedClam, VermillionHereafter, EchoesOfAnOffering, DeepwoodMemories, GildedDreams, DesertPavilionChronicle, FlowerOfParadiseLost, NymphsDream, VourukashasGlow, MarechausseeHunter, GoldenTroupe, SongOfDaysPast, NighttimeWhispersInTheEchoingWoods, FragmentOfHarmonicWhimsy, UnfinishedReverie, ScrollOfTheHeroOfCinderCity, ObsidianCodex}
 
 var _ArtifactSetKeyNameToValueMap = map[string]ArtifactSetKey{
 	_ArtifactSetKeyName_0[0:0]:          UnknownArtifactSetKey,
@@ -221,6 +223,10 @@ var _ArtifactSetKeyNameToValueMap = map[string]ArtifactSetKey{
 	_ArtifactSetKeyLowerName_5[374:398]: FragmentOfHarmonicWhimsy,
 	_ArtifactSetKeyName_5[398:415]:      UnfinishedReverie,
 	_ArtifactSetKeyLowerName_5[398:415]: UnfinishedReverie,
+	_ArtifactSetKeyName_5[415:442]:      ScrollOfTheHeroOfCinderCity,
+	_ArtifactSetKeyLowerName_5[415:442]: ScrollOfTheHeroOfCinderCity,
+	_ArtifactSetKeyName_5[442:455]:      ObsidianCodex,
+	_ArtifactSetKeyLowerName_5[442:455]: ObsidianCodex,
 }
 
 var _ArtifactSetKeyNames = []string{
@@ -276,6 +282,8 @@ var _ArtifactSetKeyNames = []string{
 	_ArtifactSetKeyName_5[340:374],
 	_ArtifactSetKeyName_5[374:398],
 	_ArtifactSetKeyName_5[398:415],
+	_ArtifactSetKeyName_5[415:442],
+	_ArtifactSetKeyName_5[442:455],
 }
 
 // ArtifactSetKeyString retrieves an enum value from the enum constants string name.
