@@ -4,7 +4,6 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
 	"flag"
 	"go/format"
 	"html/template"
@@ -35,9 +34,7 @@ const (
 {{- end }}
 `
 
-var (
-	excelPath = flag.String("genshin-data", "", "Specify GenshinData path. Defaults to $HOME/git/GenshinData or $GENSHIN_DATA_REPO if set")
-)
+var excelPath = flag.String("genshin-data", "", "Specify GenshinData path. Defaults to $HOME/git/GenshinData or $GENSHIN_DATA_REPO if set")
 
 func main() {
 	flag.Parse()
@@ -53,12 +50,9 @@ func main() {
 		}
 		repo = filepath.Join(home, "git", "GenshinData")
 	}
-	err := excel.LoadResources(func(name string, v any) error {
-		d, err := os.ReadFile(filepath.Join(repo, name))
-		if err != nil {
-			return err
-		}
-		return json.Unmarshal(d, v)
+	err := excel.LoadResources(excel.LoaderConfig{
+		Root:      repo,
+		Languages: []string{"en"},
 	})
 	check(err)
 
