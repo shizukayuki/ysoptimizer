@@ -151,6 +151,7 @@ const (
 	Kachina             CharacterKey = 10000100
 	Kinich              CharacterKey = 10000101
 	Mualani             CharacterKey = 10000102
+	Xilonen             CharacterKey = 10000103
 )
 
 type WeaponKey uint32
@@ -188,6 +189,7 @@ const (
 	FleuveCendreFerryman            WeaponKey = 11426
 	TheDockhandsAssistant           WeaponKey = 11427
 	SwordOfNarzissenkreuz           WeaponKey = 11428
+	SturdyBone                      WeaponKey = 11430
 	FluteOfEzpitzal                 WeaponKey = 11431
 	AquilaFavonia                   WeaponKey = 11501
 	SkywardBlade                    WeaponKey = 11502
@@ -201,6 +203,7 @@ const (
 	SplendorOfTranquilWaters        WeaponKey = 11513
 	UrakuMisugiri                   WeaponKey = 11514
 	Absolution                      WeaponKey = 11515
+	PeakPatrolSong                  WeaponKey = 11516
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
@@ -229,6 +232,7 @@ const (
 	TidalShadow                     WeaponKey = 12425
 	UltimateOverlordsMegaMagicSword WeaponKey = 12426
 	PortablePowerSaw                WeaponKey = 12427
+	FruitfulHook                    WeaponKey = 12430
 	EarthShaker                     WeaponKey = 12431
 	SkywardPride                    WeaponKey = 12501
 	WolfsGravestone                 WeaponKey = 12502
@@ -261,6 +265,7 @@ const (
 	RightfulReward                  WeaponKey = 13425
 	DialoguesOfTheDesertSages       WeaponKey = 13426
 	ProspectorsDrill                WeaponKey = 13427
+	MountainBracingBolt             WeaponKey = 13430
 	FootprintOfTheRainbow           WeaponKey = 13431
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
