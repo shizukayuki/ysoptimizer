@@ -28,6 +28,7 @@ var priority = []good.CharacterKey{
 	good.SangonomiyaKokomi,
 	good.Xianyun,
 
+	good.Xilonen,
 	good.Shenhe,
 	good.Mona,
 	good.Faruzan,
@@ -441,6 +442,30 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.GeoP)
 			dmg *= s.CritAverage(s.SkillCR, 0)
 			return dmg
+		},
+	},
+
+	good.Xilonen: {
+		Filter: NewFilter().
+			Sands(good.DEFP).
+			Goblet(good.DEFP, good.GeoP).
+			Circlet(good.DEFP, good.CR, good.CD, good.Heal).
+			Skip(good.ATKP, good.HPP, good.EM).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.PeakPatrolSong:
+				s.Add(good.DEFP, .08*2)
+				s.Add(good.GeoP, .10*2)
+			}
+			// A1: Portable Armored Sheath
+			s.Add(good.DEFP, .20)
+			return s.TotalDEF() >= 3200 &&
+				s.Get(good.ER) >= 1.40 &&
+				s.SetBonus == good.ScrollOfTheHeroOfCinderCity
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			return s.TotalDEF() * s.CritAverage(0, 0)
 		},
 	},
 
