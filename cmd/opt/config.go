@@ -512,12 +512,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			// A4: Consider, the Adeptus in Her Realm
 			flatdmg := min(s.TotalATK()*2, 9000)
-
-			// High Plunge DMG
-			dmg := (s.TotalATK() * 2.6076) + flatdmg
-			dmg *= 1 + s.AllDMG + s.Get(good.AnemoP)
-			dmg *= s.CritAverage(0, 0)
-			return dmg
+			return flatdmg
 		},
 	},
 
