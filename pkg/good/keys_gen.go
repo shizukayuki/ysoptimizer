@@ -152,6 +152,8 @@ const (
 	Kinich              CharacterKey = 10000101
 	Mualani             CharacterKey = 10000102
 	Xilonen             CharacterKey = 10000103
+	Chasca              CharacterKey = 10000104
+	Ororon              CharacterKey = 10000105
 )
 
 type WeaponKey uint32
@@ -191,6 +193,7 @@ const (
 	SwordOfNarzissenkreuz           WeaponKey = 11428
 	SturdyBone                      WeaponKey = 11430
 	FluteOfEzpitzal                 WeaponKey = 11431
+	CalamityOfEshu                  WeaponKey = 11432
 	AquilaFavonia                   WeaponKey = 11501
 	SkywardBlade                    WeaponKey = 11502
 	FreedomSworn                    WeaponKey = 11503
@@ -303,6 +306,7 @@ const (
 	FlowingPurity                   WeaponKey = 14425
 	BalladOfTheBoundlessBlue        WeaponKey = 14426
 	AshGravenDrinkingHorn           WeaponKey = 14427
+	WaveridingWhirl                 WeaponKey = 14430
 	RingOfYaxche                    WeaponKey = 14431
 	SkywardAtlas                    WeaponKey = 14501
 	LostPrayerToTheSacredWinds      WeaponKey = 14502
@@ -346,6 +350,7 @@ const (
 	SongOfStillness                 WeaponKey = 15425
 	Cloudforged                     WeaponKey = 15426
 	RangeGauge                      WeaponKey = 15427
+	FlowerWreathedFeathers          WeaponKey = 15430
 	ChainBreaker                    WeaponKey = 15431
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
@@ -356,4 +361,5 @@ const (
 	HuntersPath                     WeaponKey = 15511
 	TheFirstGreatMagic              WeaponKey = 15512
 	SilvershowerHeartstrings        WeaponKey = 15513
+	AstralVulturesCrimsonPlumage    WeaponKey = 15514
 )
