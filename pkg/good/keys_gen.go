@@ -154,6 +154,9 @@ const (
 	Xilonen             CharacterKey = 10000103
 	Chasca              CharacterKey = 10000104
 	Ororon              CharacterKey = 10000105
+	Mavuika             CharacterKey = 10000106
+	Citlali             CharacterKey = 10000107
+	LanYan              CharacterKey = 10000108
 )
 
 type WeaponKey uint32
@@ -245,6 +248,7 @@ const (
 	BeaconOfTheReedSea              WeaponKey = 12511
 	Verdict                         WeaponKey = 12512
 	FangOfTheMountainKing           WeaponKey = 12513
+	AThousandBlazingSuns            WeaponKey = 12514
 	BeginnersProtector              WeaponKey = 13101
 	IronPoint                       WeaponKey = 13201
 	WhiteTassel                     WeaponKey = 13301
@@ -320,6 +324,7 @@ const (
 	TomeOfTheEternalFlow            WeaponKey = 14514
 	CranesEchoingCall               WeaponKey = 14515
 	SurfsUp                         WeaponKey = 14516
+	StarcallersWatch                WeaponKey = 14517
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301

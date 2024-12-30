@@ -21,8 +21,8 @@ const (
 	_CharacterKeyLowerName_4 = "razoramberventixianglingbeidouxingqiuxiaoningguang"
 	_CharacterKeyName_5      = "KleeZhongliFischlBennettTartagliaNoelleQiqiChongyunGanyuAlbedoDiona"
 	_CharacterKeyLowerName_5 = "kleezhonglifischlbennetttartaglianoelleqiqichongyunganyualbedodiona"
-	_CharacterKeyName_6      = "MonaKeqingSucroseXinyanRosariaHuTaoKaedeharaKazuhaYanfeiYoimiyaThomaEulaRaidenShogunSayuSangonomiyaKokomiGorouKujouSaraAratakiIttoYaeMikoShikanoinHeizouYelanKiraraAloyShenheYunJinKukiShinobuKamisatoAyatoColleiDoriTighnariNilouCynoCandaceNahidaLaylaWandererFaruzanYaoyaoAlhaithamDehyaMikaKavehBaizhuLynetteLyneyFreminetWriothesleyNeuvilletteCharlotteFurinaChevreuseNaviaGamingXianyunChioriSigewinneArlecchinoSethosClorindeEmilieKachinaKinichMualaniXilonenChascaOroron"
-	_CharacterKeyLowerName_6 = "monakeqingsucrosexinyanrosariahutaokaedeharakazuhayanfeiyoimiyathomaeularaidenshogunsayusangonomiyakokomigoroukujousaraaratakiittoyaemikoshikanoinheizouyelankiraraaloyshenheyunjinkukishinobukamisatoayatocolleidoritighnariniloucynocandacenahidalaylawandererfaruzanyaoyaoalhaithamdehyamikakavehbaizhulynettelyneyfreminetwriothesleyneuvillettecharlottefurinachevreusenaviagamingxianyunchiorisigewinnearlecchinosethosclorindeemiliekachinakinichmualanixilonenchascaororon"
+	_CharacterKeyName_6      = "MonaKeqingSucroseXinyanRosariaHuTaoKaedeharaKazuhaYanfeiYoimiyaThomaEulaRaidenShogunSayuSangonomiyaKokomiGorouKujouSaraAratakiIttoYaeMikoShikanoinHeizouYelanKiraraAloyShenheYunJinKukiShinobuKamisatoAyatoColleiDoriTighnariNilouCynoCandaceNahidaLaylaWandererFaruzanYaoyaoAlhaithamDehyaMikaKavehBaizhuLynetteLyneyFreminetWriothesleyNeuvilletteCharlotteFurinaChevreuseNaviaGamingXianyunChioriSigewinneArlecchinoSethosClorindeEmilieKachinaKinichMualaniXilonenChascaOroronMavuikaCitlaliLanYan"
+	_CharacterKeyLowerName_6 = "monakeqingsucrosexinyanrosariahutaokaedeharakazuhayanfeiyoimiyathomaeularaidenshogunsayusangonomiyakokomigoroukujousaraaratakiittoyaemikoshikanoinheizouyelankiraraaloyshenheyunjinkukishinobukamisatoayatocolleidoritighnariniloucynocandacenahidalaylawandererfaruzanyaoyaoalhaithamdehyamikakavehbaizhulynettelyneyfreminetwriothesleyneuvillettecharlottefurinachevreusenaviagamingxianyunchiorisigewinnearlecchinosethosclorindeemiliekachinakinichmualanixilonenchascaororonmavuikacitlalilanyan"
 )
 
 var (
@@ -32,7 +32,7 @@ var (
 	_CharacterKeyIndex_3 = [...]uint8{0, 7, 12, 17}
 	_CharacterKeyIndex_4 = [...]uint8{0, 5, 10, 15, 24, 30, 37, 41, 50}
 	_CharacterKeyIndex_5 = [...]uint8{0, 4, 11, 17, 24, 33, 39, 43, 51, 56, 62, 67}
-	_CharacterKeyIndex_6 = [...]uint16{0, 4, 10, 17, 23, 30, 35, 50, 56, 63, 68, 72, 84, 88, 105, 110, 119, 130, 137, 152, 157, 163, 167, 173, 179, 190, 203, 209, 213, 221, 226, 230, 237, 243, 248, 256, 263, 269, 278, 283, 287, 292, 298, 305, 310, 318, 329, 340, 349, 355, 364, 369, 375, 382, 388, 397, 407, 413, 421, 427, 434, 440, 447, 454, 460, 466}
+	_CharacterKeyIndex_6 = [...]uint16{0, 4, 10, 17, 23, 30, 35, 50, 56, 63, 68, 72, 84, 88, 105, 110, 119, 130, 137, 152, 157, 163, 167, 173, 179, 190, 203, 209, 213, 221, 226, 230, 237, 243, 248, 256, 263, 269, 278, 283, 287, 292, 298, 305, 310, 318, 329, 340, 349, 355, 364, 369, 375, 382, 388, 397, 407, 413, 421, 427, 434, 440, 447, 454, 460, 466, 473, 480, 486}
 )
 
 func (i CharacterKey) String() string {
@@ -54,7 +54,7 @@ func (i CharacterKey) String() string {
 	case 10000029 <= i && i <= 10000039:
 		i -= 10000029
 		return _CharacterKeyName_5[_CharacterKeyIndex_5[i]:_CharacterKeyIndex_5[i+1]]
-	case 10000041 <= i && i <= 10000105:
+	case 10000041 <= i && i <= 10000108:
 		i -= 10000041
 		return _CharacterKeyName_6[_CharacterKeyIndex_6[i]:_CharacterKeyIndex_6[i+1]]
 	default:
@@ -158,9 +158,12 @@ func _CharacterKeyNoOp() {
 	_ = x[Xilonen-(10000103)]
 	_ = x[Chasca-(10000104)]
 	_ = x[Ororon-(10000105)]
+	_ = x[Mavuika-(10000106)]
+	_ = x[Citlali-(10000107)]
+	_ = x[LanYan-(10000108)]
 }
 
-var _CharacterKeyValues = []CharacterKey{UnknownCharacterKey, KamisatoAyaka, Jean, Lisa, Traveler, Barbara, Kaeya, Diluc, Razor, Amber, Venti, Xiangling, Beidou, Xingqiu, Xiao, Ningguang, Klee, Zhongli, Fischl, Bennett, Tartaglia, Noelle, Qiqi, Chongyun, Ganyu, Albedo, Diona, Mona, Keqing, Sucrose, Xinyan, Rosaria, HuTao, KaedeharaKazuha, Yanfei, Yoimiya, Thoma, Eula, RaidenShogun, Sayu, SangonomiyaKokomi, Gorou, KujouSara, AratakiItto, YaeMiko, ShikanoinHeizou, Yelan, Kirara, Aloy, Shenhe, YunJin, KukiShinobu, KamisatoAyato, Collei, Dori, Tighnari, Nilou, Cyno, Candace, Nahida, Layla, Wanderer, Faruzan, Yaoyao, Alhaitham, Dehya, Mika, Kaveh, Baizhu, Lynette, Lyney, Freminet, Wriothesley, Neuvillette, Charlotte, Furina, Chevreuse, Navia, Gaming, Xianyun, Chiori, Sigewinne, Arlecchino, Sethos, Clorinde, Emilie, Kachina, Kinich, Mualani, Xilonen, Chasca, Ororon}
+var _CharacterKeyValues = []CharacterKey{UnknownCharacterKey, KamisatoAyaka, Jean, Lisa, Traveler, Barbara, Kaeya, Diluc, Razor, Amber, Venti, Xiangling, Beidou, Xingqiu, Xiao, Ningguang, Klee, Zhongli, Fischl, Bennett, Tartaglia, Noelle, Qiqi, Chongyun, Ganyu, Albedo, Diona, Mona, Keqing, Sucrose, Xinyan, Rosaria, HuTao, KaedeharaKazuha, Yanfei, Yoimiya, Thoma, Eula, RaidenShogun, Sayu, SangonomiyaKokomi, Gorou, KujouSara, AratakiItto, YaeMiko, ShikanoinHeizou, Yelan, Kirara, Aloy, Shenhe, YunJin, KukiShinobu, KamisatoAyato, Collei, Dori, Tighnari, Nilou, Cyno, Candace, Nahida, Layla, Wanderer, Faruzan, Yaoyao, Alhaitham, Dehya, Mika, Kaveh, Baizhu, Lynette, Lyney, Freminet, Wriothesley, Neuvillette, Charlotte, Furina, Chevreuse, Navia, Gaming, Xianyun, Chiori, Sigewinne, Arlecchino, Sethos, Clorinde, Emilie, Kachina, Kinich, Mualani, Xilonen, Chasca, Ororon, Mavuika, Citlali, LanYan}
 
 var _CharacterKeyNameToValueMap = map[string]CharacterKey{
 	_CharacterKeyName_0[0:0]:          UnknownCharacterKey,
@@ -347,6 +350,12 @@ var _CharacterKeyNameToValueMap = map[string]CharacterKey{
 	_CharacterKeyLowerName_6[454:460]: Chasca,
 	_CharacterKeyName_6[460:466]:      Ororon,
 	_CharacterKeyLowerName_6[460:466]: Ororon,
+	_CharacterKeyName_6[466:473]:      Mavuika,
+	_CharacterKeyLowerName_6[466:473]: Mavuika,
+	_CharacterKeyName_6[473:480]:      Citlali,
+	_CharacterKeyLowerName_6[473:480]: Citlali,
+	_CharacterKeyName_6[480:486]:      LanYan,
+	_CharacterKeyLowerName_6[480:486]: LanYan,
 }
 
 var _CharacterKeyNames = []string{
@@ -442,6 +451,9 @@ var _CharacterKeyNames = []string{
 	_CharacterKeyName_6[447:454],
 	_CharacterKeyName_6[454:460],
 	_CharacterKeyName_6[460:466],
+	_CharacterKeyName_6[466:473],
+	_CharacterKeyName_6[473:480],
+	_CharacterKeyName_6[480:486],
 }
 
 // CharacterKeyString retrieves an enum value from the enum constants string name.
