@@ -57,6 +57,8 @@ const (
 	UnfinishedReverie                  ArtifactSetKey = 15036
 	ScrollOfTheHeroOfCinderCity        ArtifactSetKey = 15037
 	ObsidianCodex                      ArtifactSetKey = 15038
+	LongNightsOath                     ArtifactSetKey = 15039
+	FinaleOfTheDeepGalleries           ArtifactSetKey = 15040
 )
 
 type CharacterKey uint32
@@ -157,6 +159,9 @@ const (
 	Mavuika             CharacterKey = 10000106
 	Citlali             CharacterKey = 10000107
 	LanYan              CharacterKey = 10000108
+	YumemizukiMizuki    CharacterKey = 10000109
+	Iansan              CharacterKey = 10000110
+	Varesa              CharacterKey = 10000111
 )
 
 type WeaponKey uint32
@@ -274,6 +279,7 @@ const (
 	ProspectorsDrill                WeaponKey = 13427
 	MountainBracingBolt             WeaponKey = 13430
 	FootprintOfTheRainbow           WeaponKey = 13431
+	TamayurateiNoOhanashi           WeaponKey = 13432
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
 	VortexVanquisher                WeaponKey = 13504
@@ -325,6 +331,8 @@ const (
 	CranesEchoingCall               WeaponKey = 14515
 	SurfsUp                         WeaponKey = 14516
 	StarcallersWatch                WeaponKey = 14517
+	SunnyMorningSleepIn             WeaponKey = 14518
+	VividNotions                    WeaponKey = 14519
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301

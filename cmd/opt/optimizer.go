@@ -144,6 +144,7 @@ type ExtraStats struct {
 	AllDMG     float32
 	NormalDMG  float32
 	ChargedDMG float32
+	PlungeDMG  float32
 	BurstCR    float32
 	BurstDMG   float32
 	SkillCR    float32
@@ -326,6 +327,10 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 		s.Add(good.ATKP, .18)
 	case good.UnfinishedReverie:
 		s.Add(good.ATKP, .18)
+	case good.LongNightsOath:
+		s.Add(good.CryoP, .15)
+	case good.FinaleOfTheDeepGalleries:
+		s.PlungeDMG += .25
 	}
 }
 
