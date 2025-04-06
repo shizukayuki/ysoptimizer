@@ -27,6 +27,9 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 		s.SkillDMG += .24 + .06*r
 		s.Add(good.DEFP, .20+.05*r)
 
+	case good.AThousandBlazingSuns:
+		s.Add(good.CD, .20+.05*r)
+		s.Add(good.ATKP, .28+.07*r)
 	case good.BeaconOfTheReedSea:
 		s.Add(good.ATKP, .20+.05*r)
 		s.Add(good.HPP, .32+.08*r)
@@ -59,6 +62,9 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 		s.BurstCR += .06 + .015*r
 	case good.WavebreakersFin:
 		s.BurstDMG += min(4*70*(.0012+.0003*r), .40+.10*r)
+
+	case good.StarcallersWatch:
+		s.Add(good.EM, 100+25*r)
 	}
 	return t.Buffs(t, s)
 }

@@ -13,6 +13,7 @@ var priority = []good.CharacterKey{
 	good.KamisatoAyaka,
 	good.Eula,
 	good.Arlecchino,
+	good.Mavuika,
 	good.Fischl,
 	good.Navia,
 	good.Noelle,
@@ -29,6 +30,7 @@ var priority = []good.CharacterKey{
 	good.Xianyun,
 
 	good.Xilonen,
+	good.Citlali,
 	good.Shenhe,
 	good.Mona,
 	good.Faruzan,
@@ -627,6 +629,25 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 		},
 	},
 
+	good.Citlali: {
+		Filter: NewFilter().
+			Sands(good.EM).
+			Goblet(good.EM).
+			Circlet(good.EM).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.TenacityOfTheMillelith
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// Frostfall Storm DMG
+			dmg := s.TotalATK() * .289
+			dmg += s.Get(good.EM) * .90
+			dmg *= 1 + s.AllDMG + s.Get(good.CryoP)
+			dmg *= s.CritAverage(0, 0)
+			return dmg
+		},
+	},
+
 	good.Shenhe: {
 		Filter: NewFilter().
 			Sands(good.ATKP).
@@ -986,6 +1007,55 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			novape := dmg * 2.24
 			vape := novape * amp * 1.5
 			dmg = vape*2 + novape
+			return dmg
+		},
+	},
+
+	good.Mavuika: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.PyroP).
+			Circlet(good.CR, good.CD).
+			Skip(good.ER, good.HPP, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.AThousandBlazingSuns:
+				s.Add(good.CD, .20*.75)
+				s.Add(good.ATKP, .28*.75)
+			}
+			switch s.SetBonus {
+			case good.ObsidianCodex:
+				s.AllDMG += .15 // 2p
+				s.Add(good.CR, .40)
+			}
+			// A1: Gift of Flaming Flowers
+			s.Add(good.ATKP, .30)
+			// A4: "Kiongozi"
+			s.AllDMG += .40
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			em := s.Get(good.EM)
+			amp := 1 + (2.778*em)/(1400+em)
+
+			atk := s.TotalATK()
+
+			// Burst: Skill DMG
+			burst := atk * 7.562
+			// Burst: Sunfell Slice DMG Bonus
+			burst += atk * .027 * 200
+			burst *= 1 + s.AllDMG + s.BurstDMG + s.Get(good.PyroP)
+
+			// Skill: Flamestrider Charged Attack Cyclic DMG
+			charge := atk * 1.817
+			// Burst: Flamestrider Charged Attack DMG Bonus
+			charge += atk * .0095 * 200
+			charge *= 1 + s.AllDMG + s.ChargedDMG + s.Get(good.PyroP)
+
+			melt := amp * 2
+			dmg := burst*melt + charge*5 + charge*melt*4
+			dmg *= s.CritAverage(0, 0)
 			return dmg
 		},
 	},
