@@ -11,7 +11,6 @@ var priority = []good.CharacterKey{
 	good.YaeMiko,
 	good.Ganyu,
 	good.KamisatoAyaka,
-	good.Eula,
 	good.Arlecchino,
 	good.Mavuika,
 	good.Fischl,
@@ -21,7 +20,9 @@ var priority = []good.CharacterKey{
 	good.Yoimiya,
 	good.Clorinde,
 	good.Xiangling,
+	good.Emilie,
 	good.Beidou,
+	good.Eula,
 
 	good.Sucrose,
 	good.KukiShinobu,
@@ -40,9 +41,8 @@ var priority = []good.CharacterKey{
 	good.Jean,
 	good.Dehya,
 	good.Collei,
-	good.Emilie,
-	good.Layla,
 	good.Kirara,
+	good.Layla,
 	good.Rosaria,
 }
 
