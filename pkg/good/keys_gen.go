@@ -162,6 +162,8 @@ const (
 	YumemizukiMizuki    CharacterKey = 10000109
 	Iansan              CharacterKey = 10000110
 	Varesa              CharacterKey = 10000111
+	Escoffier           CharacterKey = 10000112
+	Ifa                 CharacterKey = 10000113
 )
 
 type WeaponKey uint32
@@ -289,6 +291,7 @@ const (
 	StaffOfTheScarletSands          WeaponKey = 13511
 	CrimsonMoonsSemblance           WeaponKey = 13512
 	LumidouceElegy                  WeaponKey = 13513
+	SymphonistOfScents              WeaponKey = 13514
 	ApprenticesNotes                WeaponKey = 14101
 	PocketGrimoire                  WeaponKey = 14201
 	MagicGuide                      WeaponKey = 14301
@@ -365,6 +368,7 @@ const (
 	RangeGauge                      WeaponKey = 15427
 	FlowerWreathedFeathers          WeaponKey = 15430
 	ChainBreaker                    WeaponKey = 15431
+	SequenceOfSolitude              WeaponKey = 15432
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
 	ElegyForTheEnd                  WeaponKey = 15503
