@@ -164,6 +164,8 @@ const (
 	Varesa              CharacterKey = 10000111
 	Escoffier           CharacterKey = 10000112
 	Ifa                 CharacterKey = 10000113
+	Skirk               CharacterKey = 10000114
+	Dahlia              CharacterKey = 10000115
 )
 
 type WeaponKey uint32
@@ -217,6 +219,7 @@ const (
 	UrakuMisugiri                   WeaponKey = 11514
 	Absolution                      WeaponKey = 11515
 	PeakPatrolSong                  WeaponKey = 11516
+	Azurelight                      WeaponKey = 11517
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
