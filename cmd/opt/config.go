@@ -32,6 +32,7 @@ var priority = []good.CharacterKey{
 
 	good.Xilonen,
 	good.Citlali,
+	good.Escoffier,
 	good.Shenhe,
 	good.Mona,
 	good.Faruzan,
@@ -443,6 +444,45 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg := s.TotalATK()*1.48 + s.TotalDEF()*1.85
 			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.GeoP)
 			dmg *= s.CritAverage(s.SkillCR, 0)
+			return dmg
+		},
+	},
+
+	good.Escoffier: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.CryoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.HPP, good.EM, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.Deathmatch:
+				s.Add(good.ATKP, .32)
+				s.Add(good.DEFP, .32)
+			case good.StaffOfTheScarletSands:
+				s.Add(good.ATK, s.Get(good.EM)*1*.28)
+			case good.MissiveWindspear:
+				s.Add(good.ATKP, .24)
+				s.Add(good.EM, 96)
+			}
+			switch s.SetBonus {
+			case good.BlizzardStrayer:
+				s.Add(good.CR, .20*1)
+			case good.GoldenTroupe:
+				s.SkillDMG += .25
+			case good.TenacityOfTheMillelith:
+				s.Add(good.ATKP, .20)
+			}
+			// Elemental Resonance: Shattering Ice
+			s.Add(good.CR, .15)
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// Frosty Parfait DMG
+			dmg := s.TotalATK() * 2.04
+			dmg *= 1 + s.AllDMG + s.SkillDMG + s.Get(good.CryoP)
+			dmg *= s.CritAverage(0, 0)
 			return dmg
 		},
 	},
