@@ -11,7 +11,7 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 	case good.KeyOfKhajNisut:
 		s.Add(good.HPP, .20+.05*r)
 	case good.MistsplitterReforged:
-		var dmg float32 = .12 + .03*r
+		dmg := .12 + .03*r
 		s.Add(good.PyroP, dmg)
 		s.Add(good.HydroP, dmg)
 		s.Add(good.DendroP, dmg)
@@ -51,6 +51,16 @@ func buffs(t *OptimizeTarget, s *OptimizeState) bool {
 		s.SkillDMG += .24 + .06*r
 		s.BurstDMG += .24 + .06*r
 
+	case good.CalamityQueller:
+		dmg := .12 + .03*r
+		s.Add(good.ATKP, 6*2*(.032+.008*r))
+		s.Add(good.PyroP, dmg)
+		s.Add(good.HydroP, dmg)
+		s.Add(good.DendroP, dmg)
+		s.Add(good.ElectroP, dmg)
+		s.Add(good.AnemoP, dmg)
+		s.Add(good.CryoP, dmg)
+		s.Add(good.GeoP, dmg)
 	case good.PrimordialJadeWingedSpear:
 		s.Add(good.ATKP, 2*(.032+.007*r))
 	case good.SkywardSpine:

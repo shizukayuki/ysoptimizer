@@ -636,6 +636,10 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.EM).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch s.SetBonus {
+			case good.TenacityOfTheMillelith:
+				s.Add(good.ATKP, .20)
+			}
 			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.TenacityOfTheMillelith
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
@@ -659,7 +663,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			case good.NoblesseOblige:
 				s.Add(good.ATKP, .20)
 			}
-			return s.Get(good.ER) >= 2.00
+			return s.Get(good.ER) >= 1.80
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			ayaka, ok := optimized[good.KamisatoAyaka]
