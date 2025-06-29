@@ -328,9 +328,9 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 	case good.UnfinishedReverie:
 		s.Add(good.ATKP, .18)
 	case good.LongNightsOath:
-		s.Add(good.CryoP, .15)
-	case good.FinaleOfTheDeepGalleries:
 		s.PlungeDMG += .25
+	case good.FinaleOfTheDeepGalleries:
+		s.Add(good.CryoP, .15)
 	}
 }
 
