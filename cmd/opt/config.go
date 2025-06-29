@@ -10,6 +10,7 @@ var priority = []good.CharacterKey{
 	good.RaidenShogun,
 	good.YaeMiko,
 	good.Ganyu,
+	good.Skirk,
 	good.KamisatoAyaka,
 	good.Arlecchino,
 	good.Mavuika,
@@ -73,6 +74,47 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			dmg *= s.CritAverage(0, 0)
 			// Ice Shard DMG
 			dmg *= 1.265
+			return dmg
+		},
+	},
+
+	good.Skirk: {
+		Filter: NewFilter().
+			Sands(good.ATKP).
+			Goblet(good.CryoP).
+			Circlet(good.CR, good.CD).
+			Skip(good.ER, good.HPP, good.EM, good.DEFP).Max(2).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			switch t.Weapon.Key {
+			case good.Azurelight:
+				s.Add(good.ATKP, .24*2)
+				s.Add(good.CD, .40)
+			case good.MistsplitterReforged:
+				s.Add(good.CryoP, .28)
+			}
+			switch s.SetBonus {
+			case good.BlizzardStrayer:
+				s.Add(good.CR, .20*1)
+			case good.FinaleOfTheDeepGalleries:
+				s.NormalDMG += .60
+				s.BurstDMG += .60
+			}
+			// Elemental Resonance: Shattering Ice
+			s.Add(good.CR, .15)
+			return true
+		},
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			// Burst: 3 Void Rift Absorption DMG Bonus
+			s.NormalDMG += .19
+
+			// 1-Hit DMG
+			dmg := s.TotalATK() * 2.626
+			dmg *= 1 + s.AllDMG + s.NormalDMG + s.Get(good.CryoP)
+			dmg *= s.CritAverage(0, 0)
+
+			// A4: Return to Oblivion (3 stacks)
+			dmg *= 1.70
 			return dmg
 		},
 	},
