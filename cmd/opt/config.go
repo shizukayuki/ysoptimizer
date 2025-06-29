@@ -42,9 +42,9 @@ var priority = []good.CharacterKey{
 
 	good.Jean,
 	good.Dehya,
-	good.Collei,
-	good.Kirara,
 	good.Layla,
+	good.Kirara,
+	good.Collei,
 	good.Rosaria,
 }
 
@@ -641,7 +641,7 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			Circlet(good.HPP, good.CR).
 			Build(),
 		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
-			return s.Get(good.ER) >= 1.60 && s.Get(good.CR) >= .70
+			return s.Get(good.ER) >= 1.60 && s.Get(good.CR) >= .70 && s.SetBonus == good.TenacityOfTheMillelith
 		},
 		IgnoreEnemy: true,
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
