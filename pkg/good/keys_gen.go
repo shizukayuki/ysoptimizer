@@ -166,6 +166,7 @@ const (
 	Ifa                 CharacterKey = 10000113
 	Skirk               CharacterKey = 10000114
 	Dahlia              CharacterKey = 10000115
+	Ineffa              CharacterKey = 10000116
 )
 
 type WeaponKey uint32
@@ -250,6 +251,7 @@ const (
 	PortablePowerSaw                WeaponKey = 12427
 	FruitfulHook                    WeaponKey = 12430
 	EarthShaker                     WeaponKey = 12431
+	FlameForgedInsight              WeaponKey = 12432
 	SkywardPride                    WeaponKey = 12501
 	WolfsGravestone                 WeaponKey = 12502
 	SongOfBrokenPines               WeaponKey = 12503
@@ -295,6 +297,7 @@ const (
 	CrimsonMoonsSemblance           WeaponKey = 13512
 	LumidouceElegy                  WeaponKey = 13513
 	SymphonistOfScents              WeaponKey = 13514
+	FracturedHalo                   WeaponKey = 13515
 	ApprenticesNotes                WeaponKey = 14101
 	PocketGrimoire                  WeaponKey = 14201
 	MagicGuide                      WeaponKey = 14301
