@@ -59,6 +59,8 @@ const (
 	ObsidianCodex                      ArtifactSetKey = 15038
 	LongNightsOath                     ArtifactSetKey = 15039
 	FinaleOfTheDeepGalleries           ArtifactSetKey = 15040
+	NightOfTheSkysUnveiling            ArtifactSetKey = 15041
+	SilkenMoonsSerenade                ArtifactSetKey = 15042
 )
 
 type CharacterKey uint32
@@ -167,6 +169,9 @@ const (
 	Skirk               CharacterKey = 10000114
 	Dahlia              CharacterKey = 10000115
 	Ineffa              CharacterKey = 10000116
+	Lauma               CharacterKey = 10000119
+	Flins               CharacterKey = 10000120
+	Aino                CharacterKey = 10000121
 )
 
 type WeaponKey uint32
@@ -207,6 +212,8 @@ const (
 	SturdyBone                      WeaponKey = 11430
 	FluteOfEzpitzal                 WeaponKey = 11431
 	CalamityOfEshu                  WeaponKey = 11432
+	SerenitysCall                   WeaponKey = 11433
+	MoonweaversDawn                 WeaponKey = 11434
 	AquilaFavonia                   WeaponKey = 11501
 	SkywardBlade                    WeaponKey = 11502
 	FreedomSworn                    WeaponKey = 11503
@@ -252,6 +259,7 @@ const (
 	FruitfulHook                    WeaponKey = 12430
 	EarthShaker                     WeaponKey = 12431
 	FlameForgedInsight              WeaponKey = 12432
+	MasterKey                       WeaponKey = 12433
 	SkywardPride                    WeaponKey = 12501
 	WolfsGravestone                 WeaponKey = 12502
 	SongOfBrokenPines               WeaponKey = 12503
@@ -287,6 +295,7 @@ const (
 	MountainBracingBolt             WeaponKey = 13430
 	FootprintOfTheRainbow           WeaponKey = 13431
 	TamayurateiNoOhanashi           WeaponKey = 13432
+	ProspectorsShovel               WeaponKey = 13433
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
 	VortexVanquisher                WeaponKey = 13504
@@ -298,6 +307,7 @@ const (
 	LumidouceElegy                  WeaponKey = 13513
 	SymphonistOfScents              WeaponKey = 13514
 	FracturedHalo                   WeaponKey = 13515
+	BloodsoakedRuins                WeaponKey = 13516
 	ApprenticesNotes                WeaponKey = 14101
 	PocketGrimoire                  WeaponKey = 14201
 	MagicGuide                      WeaponKey = 14301
@@ -327,6 +337,8 @@ const (
 	AshGravenDrinkingHorn           WeaponKey = 14427
 	WaveridingWhirl                 WeaponKey = 14430
 	RingOfYaxche                    WeaponKey = 14431
+	EtherlightSpindlelute           WeaponKey = 14432
+	BlackmarrowLantern              WeaponKey = 14433
 	SkywardAtlas                    WeaponKey = 14501
 	LostPrayerToTheSacredWinds      WeaponKey = 14502
 	MemoryOfDust                    WeaponKey = 14504
@@ -342,6 +354,7 @@ const (
 	StarcallersWatch                WeaponKey = 14517
 	SunnyMorningSleepIn             WeaponKey = 14518
 	VividNotions                    WeaponKey = 14519
+	NightweaversLookingGlass        WeaponKey = 14520
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301
@@ -375,6 +388,7 @@ const (
 	FlowerWreathedFeathers          WeaponKey = 15430
 	ChainBreaker                    WeaponKey = 15431
 	SequenceOfSolitude              WeaponKey = 15432
+	SnareHook                       WeaponKey = 15433
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
 	ElegyForTheEnd                  WeaponKey = 15503
