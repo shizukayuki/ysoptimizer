@@ -175,6 +175,8 @@ const (
 	Flins               CharacterKey = 10000120
 	Aino                CharacterKey = 10000121
 	Nefer               CharacterKey = 10000122
+	Durin               CharacterKey = 10000123
+	Jahoda              CharacterKey = 10000124
 )
 
 type WeaponKey uint32
@@ -231,6 +233,7 @@ const (
 	Absolution                      WeaponKey = 11515
 	PeakPatrolSong                  WeaponKey = 11516
 	Azurelight                      WeaponKey = 11517
+	AthameArtis                     WeaponKey = 11518
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
@@ -395,6 +398,7 @@ const (
 	ChainBreaker                    WeaponKey = 15431
 	SequenceOfSolitude              WeaponKey = 15432
 	SnareHook                       WeaponKey = 15433
+	RainbowSerpentsRainBow          WeaponKey = 15434
 	SkywardHarp                     WeaponKey = 15501
 	AmosBow                         WeaponKey = 15502
 	ElegyForTheEnd                  WeaponKey = 15503
@@ -405,4 +409,5 @@ const (
 	TheFirstGreatMagic              WeaponKey = 15512
 	SilvershowerHeartstrings        WeaponKey = 15513
 	AstralVulturesCrimsonPlumage    WeaponKey = 15514
+	TheDaybreakChronicles           WeaponKey = 15515
 )
