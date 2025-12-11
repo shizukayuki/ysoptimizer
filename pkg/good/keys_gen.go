@@ -169,9 +169,12 @@ const (
 	Skirk               CharacterKey = 10000114
 	Dahlia              CharacterKey = 10000115
 	Ineffa              CharacterKey = 10000116
+	Manekin             CharacterKey = 10000117
+	Manekina            CharacterKey = 10000118
 	Lauma               CharacterKey = 10000119
 	Flins               CharacterKey = 10000120
 	Aino                CharacterKey = 10000121
+	Nefer               CharacterKey = 10000122
 )
 
 type WeaponKey uint32
@@ -296,6 +299,7 @@ const (
 	FootprintOfTheRainbow           WeaponKey = 13431
 	TamayurateiNoOhanashi           WeaponKey = 13432
 	ProspectorsShovel               WeaponKey = 13433
+	SacrificersStaff                WeaponKey = 13434
 	StaffOfHoma                     WeaponKey = 13501
 	SkywardSpine                    WeaponKey = 13502
 	VortexVanquisher                WeaponKey = 13504
@@ -339,6 +343,7 @@ const (
 	RingOfYaxche                    WeaponKey = 14431
 	EtherlightSpindlelute           WeaponKey = 14432
 	BlackmarrowLantern              WeaponKey = 14433
+	DawningFrost                    WeaponKey = 14434
 	SkywardAtlas                    WeaponKey = 14501
 	LostPrayerToTheSacredWinds      WeaponKey = 14502
 	MemoryOfDust                    WeaponKey = 14504
@@ -355,6 +360,7 @@ const (
 	SunnyMorningSleepIn             WeaponKey = 14518
 	VividNotions                    WeaponKey = 14519
 	NightweaversLookingGlass        WeaponKey = 14520
+	ReliquaryOfTruth                WeaponKey = 14521
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301
