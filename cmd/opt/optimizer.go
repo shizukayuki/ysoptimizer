@@ -335,6 +335,10 @@ func (s *OptimizeState) add2SetBonus(set good.ArtifactSetKey) {
 		s.Add(good.EM, 80)
 	case good.SilkenMoonsSerenade:
 		s.Add(good.ER, .20)
+	case good.AubadeOfMorningstarAndMoon:
+		s.Add(good.EM, 80)
+	case good.ADayCarvedFromRisingWinds:
+		s.Add(good.ATKP, .18)
 	}
 }
 

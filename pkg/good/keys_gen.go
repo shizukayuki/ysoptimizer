@@ -61,6 +61,8 @@ const (
 	FinaleOfTheDeepGalleries           ArtifactSetKey = 15040
 	NightOfTheSkysUnveiling            ArtifactSetKey = 15041
 	SilkenMoonsSerenade                ArtifactSetKey = 15042
+	AubadeOfMorningstarAndMoon         ArtifactSetKey = 15043
+	ADayCarvedFromRisingWinds          ArtifactSetKey = 15044
 )
 
 type CharacterKey uint32
@@ -177,6 +179,9 @@ const (
 	Nefer               CharacterKey = 10000122
 	Durin               CharacterKey = 10000123
 	Jahoda              CharacterKey = 10000124
+	Columbina           CharacterKey = 10000125
+	Zibai               CharacterKey = 10000126
+	Illuga              CharacterKey = 10000127
 )
 
 type WeaponKey uint32
@@ -234,6 +239,7 @@ const (
 	PeakPatrolSong                  WeaponKey = 11516
 	Azurelight                      WeaponKey = 11517
 	AthameArtis                     WeaponKey = 11518
+	LightbearingMoonshard           WeaponKey = 11519
 	WasterGreatsword                WeaponKey = 12101
 	OldMercsPal                     WeaponKey = 12201
 	FerrousShadow                   WeaponKey = 12301
@@ -364,6 +370,7 @@ const (
 	VividNotions                    WeaponKey = 14519
 	NightweaversLookingGlass        WeaponKey = 14520
 	ReliquaryOfTruth                WeaponKey = 14521
+	NocturnesCurtainCall            WeaponKey = 14522
 	HuntersBow                      WeaponKey = 15101
 	SeasonedHuntersBow              WeaponKey = 15201
 	RavenBow                        WeaponKey = 15301
