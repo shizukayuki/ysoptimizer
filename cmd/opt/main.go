@@ -164,10 +164,16 @@ func handleTraveler(data []byte) ([]byte, error) {
 	}
 
 	for _, c := range chars {
-		if !strings.HasPrefix(string(c["key"]), "\"Traveler") {
-			continue
+		for _, name := range []string{
+			"Manekin",
+			"Manekina",
+			"Traveler",
+		} {
+			if strings.HasPrefix(string(c["key"]), "\""+name) {
+				c["key"] = json.RawMessage("\"" + name + "\"")
+				break
+			}
 		}
-		c["key"] = json.RawMessage("\"Traveler\"")
 	}
 
 	var err error
