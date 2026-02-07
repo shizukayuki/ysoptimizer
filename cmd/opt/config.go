@@ -231,10 +231,12 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			switch s.SetBonus {
 			case good.GladiatorsFinale:
 				s.NormalDMG += .35
+			case good.FragmentOfHarmonicWhimsy:
+				s.AllDMG += .18 * 3
 			}
 			// A4: Lawful Remuneration
 			s.Add(good.CR, .20)
-			return s.SetBonus == good.ThunderingFury
+			return s.SetBonus == good.ThunderingFury || s.SetBonus == good.FragmentOfHarmonicWhimsy
 		},
 		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
 			var bonus float32
