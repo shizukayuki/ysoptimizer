@@ -15,7 +15,9 @@ var priority = []good.CharacterKey{
 	good.Arlecchino,
 	good.Mavuika,
 	good.Fischl,
+	good.Columbina,
 	good.Navia,
+	good.Zibai,
 	good.Noelle,
 	good.Chiori,
 	good.Yoimiya,
@@ -848,6 +850,74 @@ var config = map[good.CharacterKey]*OptimizeTarget{
 			hbloom := 1446.9 * (1 + (16*em)/(2000+em) + bonus) * 3
 			hbloom *= enemyMult(0, 0, 1)
 			return hbloom
+		},
+	},
+
+	good.Columbina: {
+		Filter: NewFilter().
+			Sands(good.HPP).
+			Goblet(good.HPP).
+			Circlet(good.CR, good.CD).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			return s.Get(good.ER) >= 1.60 && s.SetBonus == good.AubadeOfMorningstarAndMoon
+		},
+		IgnoreEnemy: true,
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			em := s.Get(good.EM)
+			// Burst: Lunar Reaction DMG Bonus
+			var lunarDMGBonus float32 = .37
+			// Moonsign
+			lunarBaseDMG := min(s.TotalHP()*.001*.002, .07)
+
+			switch s.SetBonus {
+			case good.AubadeOfMorningstarAndMoon:
+				lunarDMGBonus += .20 + .40
+			}
+
+			// Gravity Interference: Lunar-Crystallize DMG
+			dmg := s.TotalHP() * .15 * 1.6
+			dmg *= 1 + (6*em)/(2000+em) + lunarDMGBonus
+			dmg *= 1 + lunarBaseDMG
+			dmg *= s.CritAverage(0, 0)
+			dmg *= enemyMult(0, 0, 1)
+			return dmg
+		},
+	},
+
+	good.Zibai: {
+		Filter: NewFilter().
+			Sands(good.DEFP).
+			Goblet(good.DEFP).
+			Circlet(good.CR, good.CD).
+			Build(),
+		Buffs: func(t *OptimizeTarget, s *OptimizeState) bool {
+			// A4: Layered Peaks Pierce the Clouds
+			s.Add(good.DEFP, .15)
+			s.Add(good.EM, 60*1)
+			return true
+		},
+		IgnoreEnemy: true,
+		Target: func(t *OptimizeTarget, s *OptimizeState) float32 {
+			em := s.Get(good.EM)
+			// Columbina: Burst: Lunar Reaction DMG Bonus
+			var lunarDMGBonus float32 = .37
+			// Moonsign
+			lunarBaseDMG := min(s.TotalHP()*.01*.007, .14)
+
+			switch s.SetBonus {
+			case good.NightOfTheSkysUnveiling:
+				lunarDMGBonus += .10
+				s.Add(good.CR, .30)
+			}
+
+			// Gravity Interference: Lunar-Crystallize DMG
+			dmg := s.TotalDEF() * 2.396 * 1.6
+			dmg *= 1 + (6*em)/(2000+em) + lunarDMGBonus
+			dmg *= 1 + lunarBaseDMG
+			dmg *= s.CritAverage(0, 0)
+			dmg *= enemyMult(0, 0, 1)
+			return dmg
 		},
 	},
 
